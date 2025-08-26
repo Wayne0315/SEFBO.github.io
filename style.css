@@ -1,0 +1,274 @@
+/* --- 1. 全域與基礎設定 --- */
+:root {
+    --color-primary: #D93A3A; /* 品牌主色 - 鮮明的紅色 */
+    --color-dark: #151515;    /* 深色文字與背景 */
+    --color-light: #ffffff;   /* 淺色文字與背景 */
+    --color-grey: #f5f5f5;    /* 淺灰色背景 */
+    --font-primary: 'Raleway', 'Helvetica Neue', Arial, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    line-height: 1.7;
+    font-size: 16px;
+    padding-top: 80px; /* 為固定的 Header 預留空間 */
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+section {
+    padding: 120px 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- 2. 字體排版 --- */
+h1, h2, h3, .logo {
+    font-weight: 900;
+    line-height: 1.2;
+    margin: 0;
+}
+
+h1 {
+    font-size: clamp(3.5rem, 6vw, 6rem);
+}
+
+h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: 24px;
+}
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.1rem;
+    max-width: 65ch;
+    margin-bottom: 1rem;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    padding: 15px 35px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+.button:hover {
+    background-color: #b02a2a;
+}
+
+/* --- 3. Header 導覽列 --- */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: var(--color-dark);
+    text-decoration: none;
+}
+
+.main-nav a {
+    color: var(--color-dark);
+    text-decoration: none;
+    margin-left: 35px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 5px;
+}
+.main-nav a:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+}
+.main-nav a:hover:after {
+    width: 100%;
+}
+
+/* --- 4. Hero Section 首屏 (僅首頁使用) --- */
+.hero {
+    height: calc(100vh - 80px); /* 減去 header 高度 */
+    margin-top: -80px; /* 抵銷 body 的 padding-top */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop') no-repeat center center/cover;
+}
+
+.hero-content {
+    padding-left: 5%;
+}
+
+.hero-content h1 {
+    color: var(--color-light);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+.hero-content p {
+    color: var(--color-light);
+    font-size: 1.5rem;
+    max-width: 500px;
+}
+
+/* --- 5. 頁面標題 (Page Header) --- */
+.page-header {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    padding: 80px 0;
+    text-align: center;
+}
+
+/* --- 6. 專案/團隊/聯絡頁面通用樣式 --- */
+.bg-light {
+    background-color: var(--color-grey);
+}
+.text-center {
+    text-align: center;
+}
+.content-section p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.projects-grid, .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.project-item, .team-member {
+    background: var(--color-light);
+    text-decoration: none;
+    color: var(--color-dark);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-item:hover, .team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.project-item img, .team-member img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+.project-info, .team-info {
+    padding: 25px;
+}
+.project-info p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+.team-info .title {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* --- 7. 聯絡表單 --- */
+.contact-form {
+    max-width: 700px;
+    margin: 60px auto 0 auto;
+    text-align: left;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+}
+.form-group textarea {
+    min-height: 150px;
+}
+
+/* --- 8. 頁尾 --- */
+.site-footer {
+    background-color: #1a1a1a;
+    color: #a0a0a0;
+    padding: 60px 0;
+    margin-top: auto; /* 將 footer 推到頁面底部 */
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-grid h4 {
+    color: var(--color-light);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.footer-grid p, .footer-grid a {
+    color: #a0a0a0;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+.footer-grid a:hover {
+    color: var(--color-light);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid #333;
+    font-size: 0.9rem;
+}
