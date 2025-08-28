@@ -8,18 +8,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 </head>
 <body>
 
     <div id="header-placeholder"></div>
 
-
     <main>
         <section class="page-header">
-            <h1>Our Projects</h1>
-            <p style="color: #ccc; max-width: 600px; margin: 20px auto 0 auto;">從商業地標到文化空間，我們的作品遍及全球，每一個專案都承載著我們對品質、創新與在地文化的承諾。</p>
+            <h1>Projects</h1>
+            <p style="color: #ccc; max-width: 600px; margin: 20px auto 0 auto;">Spanning the globe, each of our projects embodies our commitment to quality, innovation, and local culture</p>
         </section>
         
+        <section class="container" style="padding-top: 60px; padding-bottom: 60px;">
+            <div id="map"></div>
+        </section>
+
         <section class="container">
             <div class="projects-grid">
                 <a href="#" class="project-item">
@@ -58,5 +63,30 @@
 
     <script src="main.js"></script>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        // 初始化地圖，設定中心點與縮放等級
+        var map = L.map('map').setView([35, 80], 3);
+
+        // 加入地圖圖層 (使用 OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // 定義專案地點的資料
+        var projectLocations = [
+            { name: "Austin, Texas (2020)", lat: 30.27, lng: -97.74 },
+            { name: "Chongqing, China (2010)", lat: 29.57, lng: 106.55 },
+            { name: "Beijing, China (2007)", lat: 39.9, lng: 116.41 },
+            { name: "Lhasa, Tibet (2010)", lat: 29.64, lng: 91.11 }
+        ];
+
+        // 迴圈處理每個地點，並在地圖上加上標記
+        projectLocations.forEach(function(location) {
+            L.marker([location.lat, location.lng]).addTo(map)
+                .bindPopup('<b>' + location.name + '</b>');
+        });
+    </script>
 </body>
 </html>

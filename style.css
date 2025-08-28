@@ -94,7 +94,7 @@ p {
 
 .header-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* 將 space-between 改成 center */
     align-items: center;
     height: 80px;
     /* --- 新增這一行 --- */
@@ -140,18 +140,18 @@ p {
 .hero {
     height: calc(100vh - 80px); /* 減去 header 高度 */
     margin-top: -80px; /* 抵銷 body 的 padding-top */
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
     padding: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop') no-repeat center center/cover;
+    /* 移除 background, display, align-items, justify-content 等屬性 */
 }
 
 .hero-content {
-    padding-left: 5%;
+    position: relative;
+    z-index: 2;
+    text-align: left; /* 新增：讓內部的文字都靠左對齊 */
+    padding-left: 20%; /* 新增：增加左邊的留白，讓文字與螢幕邊緣有距離 */
 }
 
-.hero-content h1 {
+.hero-content h1, .hero-content h2 {
     color: var(--color-light);
     text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
 }
@@ -247,7 +247,7 @@ p {
 .site-footer {
     background-color: #1a1a1a;
     color: #a0a0a0;
-    padding: 60px 0;
+    padding: 5px 0 1px 0; /* 將上下邊距縮小 */
     margin-top: auto; /* 將 footer 推到頁面底部 */
 }
 
@@ -275,8 +275,70 @@ p {
 
 .copyright {
     text-align: center;
-    margin-top: 60px;
-    padding-top: 30px;
+    margin-top: 40px; /* 減少與上方內容的距離 */
+    padding-top: 20px; /* 減少與分隔線的距離 */
     border-top: 1px solid #333;
-    font-size: 0.9rem;
+    font-size: 0.6rem;
+}
+
+/* --- 9. Hero Slider (Swiper) --- */
+.hero-slider {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* 背景圖片設定 */
+    background-position: center;
+    background-size: cover;
+
+    /* 將內容垂直置中 */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    /* --- 以下為新增的兩行 --- */
+    padding-top: 130px;      /* 用來抵銷 Header 的高度 */
+    box-sizing: border-box; /* 確保 padding 不會影響整體高度計算 */
+}
+
+
+/* 為每張圖片加上深色遮罩，確保文字清晰 */
+.swiper-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 確保 hero-content 在遮罩上方 */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Swiper 導航按鈕和分頁圓點的顏色 */
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--color-light); /* 白色箭頭 */
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--color-light); /* 當前分頁圓點的顏色 */
+}
+
+/* --- 10. Map Styles --- */
+#map {
+    height: 450px;
+    width: 100%;
+    border-radius: 8px; /* 加上圓角讓地圖更好看 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 加上一些陰影 */
+    background-color: #fffefe; /* 預設背景色 */
 }

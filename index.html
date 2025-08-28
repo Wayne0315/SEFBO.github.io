@@ -8,17 +8,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
-    
-
     <main>
         <section class="hero">
-            <div class="hero-content">
-                <h1>Creating a Better World</h1>
-                <p>Through the Power of Design. We are SEFBO, a collective of architects, designers, and thinkers.</p>
+            <div class="swiper hero-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop');">
+                        <div class="hero-content">
+                            <h2>Bridging the gap </h2>
+                            <p>Through the Power of Design. We are SEFBO, a collective of architects, designers, and thinkers.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2940&auto=format&fit=crop');">
+                        <div class="hero-content">
+                            <h2>Spanning the world</h2>
+                            <p>We craft environments that inspire creativity and productivity.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2940&auto=format&fit=crop');">
+                         <div class="hero-content">
+                            <h2>Built to Last</h2>
+                            <p>Our commitment to quality ensures a legacy for future generations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
         </section>
 
@@ -33,6 +53,26 @@
     <div id="footer-placeholder"></div>
 
     <script src="main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".hero-slider", {
+            loop: true, // 循環播放
+            autoplay: {
+                delay: 5000, // 5秒切換一次
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
 
 </body>
 </html>
