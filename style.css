@@ -87,7 +87,7 @@ p {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgb(255, 255, 255);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid #e0e0e0;
 }
@@ -97,6 +97,8 @@ p {
     justify-content: space-between;
     align-items: center;
     height: 80px;
+    /* --- 新增這一行 --- */
+    padding: 0 40px; 
 }
 
 .logo {
@@ -104,6 +106,12 @@ p {
     letter-spacing: 2px;
     color: var(--color-dark);
     text-decoration: none;
+}
+/* 在 style.css 中加入 */
+.logo-img {
+    max-height: 60px; /* 控制圖片最大高度 */
+    width: auto;     /* 保持圖片比例 */
+    vertical-align: middle; /* 讓圖片與文字垂直對齊，如果旁邊還有文字的話 */
 }
 
 .main-nav a {
