@@ -102,7 +102,7 @@ p {
 /* --- 4. Hero Section & Slider --- */
 .hero {
     height: calc(100vh - 80px);
-    margin-top: -80px;
+    margin-top: -20px;
     padding: 0;
 }
 .hero-slider {
@@ -159,49 +159,71 @@ p {
     text-align: center;
 }
 
-/* --- 6. 專案/團隊/聯絡頁面通用樣式 --- */
-.bg-light {
-    background-color: var(--color-grey);
-}
-.text-center {
-    text-align: center;
-}
-.content-section p {
-    margin-left: auto;
-    margin-right: auto;
-}
-.projects-grid, .team-grid {
+/* --- Projects Feature Layout --- */
+.project-feature {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-    margin-top: 60px;
+    grid-template-columns: 1fr 1fr; /* 預設兩欄式佈局 */
+    gap: 60px; /* 圖片和文字之間的間距 */
+    align-items: center;
+    margin-bottom: 120px; /* 每一個專案之間的垂直間距 */
 }
-.project-item, .team-member {
-    background: var(--color-light);
-    text-decoration: none;
-    color: var(--color-dark);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+/* 關鍵：讓偶數的專案項目 (第2, 4, 6...) 圖片和文字順序對調 */
+.project-feature:nth-child(even) .project-feature-image {
+    order: 2; /* 將圖片的順序改為 2，文字順序預設為 1 */
 }
-.project-item:hover, .team-member:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+.project-feature-image img {
+    border-radius: 8px; /* 為圖片加上圓角 */
 }
-.project-item img, .team-member img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-}
-.project-info, .team-info {
-    padding: 25px;
-}
-.project-info p {
-    color: #666;
-    font-size: 1rem;
-    margin-bottom: 0;
-}
-.team-info .title {
-    color: var(--color-primary);
+
+.project-feature-content .project-category {
+    font-size: 0.9rem;
     font-weight: 700;
+    color: #888;
+    letter-spacing: 1px;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+.project-feature-content h3 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem); /* 標題字體大小 */
+    margin: 0 0 15px 0;
+}
+
+.project-feature-content h3 a {
+    color: var(--color-dark);
+    text-decoration: none;
+}
+
+.project-feature-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    max-width: 50ch; /* 限制段落寬度，更易讀 */
+}
+
+/* --- Responsive Styles for Projects Feature --- */
+@media (max-width: 800px) {
+    .project-feature {
+        grid-template-columns: 1fr; /* 在小螢幕上，改為單欄堆疊 */
+        gap: 30px;
+        margin-bottom: 80px;
+    }
+
+    /* 在小螢幕上，取消順序對調，確保圖片永遠在文字上方 */
+    .project-feature:nth-child(even) .project-feature-image {
+        order: 0; /* 恢復預設順序 */
+    }
+
+    .project-feature-content {
+        text-align: center; /* 手機上文字置中 */
+    }
+    
+    .project-feature-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 /* --- 7. 聯絡表單 --- */
@@ -242,10 +264,11 @@ p {
     grid-template-columns: 2fr 1fr 1fr;
     gap: 40px;
 }
-.footer-grid h4 {
+.footer-grid > div > h4 {
     color: var(--color-light);
     font-size: 1.2rem;
-    margin-bottom: 20px;
+    font-weight: 900; /* 確保標題是粗體 */
+    margin-bottom: 20px; /* 確保有 20px 的底部間距 */
 }
 .footer-grid p, .footer-grid a {
     color: #a0a0a0;
@@ -285,57 +308,74 @@ p {
     background-color: #e0e0e0;
 }
 
-/* --- 10. Search Styles --- */
+/* --- 10. Search Styles (Dropdown Panel Version) --- */
 .search-overlay {
     position: fixed;
-    top: 0;
+    top: 80px; /* 從 80px 高的 header 下方開始 */
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.98);
-    z-index: 2000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: auto; /* 高度由內容和 padding 決定 */
+    background-color: var(--color-light); /* 改為不透明的淺色背景 */
+    z-index: 1001; /* 確保在內容之上，但在 header 之下 (如果 header 是 1000+) */
+    
+    /* 加上陰影和上邊框，看起來像從 header 滑出 */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-top: 1px solid #e0e0e0;
+
+    /* 預設隱藏，並加上動畫效果 */
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transform: translateY(-20px); /* 向上移動一點，製造滑出效果 */
+    transition: opacity 0.3s ease, visibility 0s 0.3s, transform 0.3s ease;
 }
+
 .search-overlay.is-open {
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, visibility 0s 0s, transform 0.3s ease;
 }
+
 .search-content {
     width: 90%;
-    max-width: 600px;
+    max-width: 800px; /* 可以讓搜尋框寬一點 */
+    margin: 0 auto; /* 水平置中 */
+    padding: 40px 0 60px 0; /* 設定上下留白 */
+    position: relative;
 }
+
 #search-input {
     width: 100%;
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-size: 1.5rem; /* 縮小字體，輸入框就會變矮 */
+    font-weight: 700;
     font-family: var(--font-primary);
     border: none;
     border-bottom: 2px solid var(--color-dark);
     background: transparent;
     outline: none;
+    padding: 10px 0;
 }
+
 .search-close {
     position: absolute;
-    top: 30px;
-    right: 40px;
-    font-size: 3rem;
+    top: 35px;
+    right: 0;
+    font-size: 2.5rem;
     background: none;
     border: none;
     cursor: pointer;
     color: var(--color-dark);
 }
+
 .search-results {
-    margin-top: 40px;
-    max-height: 60vh;
+    margin-top: 30px;
+    max-height: 50vh; /* 限制最大高度 */
     overflow-y: auto;
     text-align: left;
 }
+
 .search-results .result-item {
-    padding: 20px 10px;
+    padding: 15px 5px;
     border-bottom: 1px solid #e0e0e0;
     transition: background-color 0.3s ease;
 }
@@ -348,20 +388,20 @@ p {
     display: block;
 }
 .search-results .result-item h4 {
-    margin: 0 0 8px 0;
-    font-size: 1.2rem;
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
     font-weight: 700;
 }
 .search-results .result-item p {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #666;
     line-height: 1.6;
 }
 .search-results .no-results {
     color: #888;
-    font-size: 1.2rem;
-    padding: 20px 10px;
+    font-size: 1.1rem;
+    padding: 20px 0;
 }
 
 /* --- 11. ADVANCED RESPONSIVE HEADER (Final Version) --- */
@@ -528,4 +568,45 @@ p {
         margin-top: 30px;
         padding-top: 10px;
     }
+}
+
+/* --- 13. Hero Section Responsive Styles --- */
+@media (max-width: 768px) {
+    
+    /* 縮小 Hero 區塊的高度 */
+    .hero {
+        height: 50vh; /* 在小螢幕上，高度改為螢幕高度的 65% */
+    }
+
+    /* 適度縮小標題和內文的字體大小，以符合較小的空間 */
+    .hero-content h2 {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+        max-width: 85%; /* 讓段落可以稍微寬一點 */
+    }
+}
+
+
+/* --- 14. Universal Image Hover Zoom Effect --- */
+
+/* 步驟一：為所有需要效果的圖片容器加上 overflow: hidden */
+/* 這能確保放大的圖片不會超出容器的邊界，特別是在有圓角的情況下 */
+.project-feature-image,
+.team-member {
+    overflow: hidden;
+}
+
+/* 步驟二：為所有目標圖片設定過渡動畫 */
+.project-feature-image img,
+.team-member img {
+    transition: transform 0.4s ease-in-out; /* 動畫時間可以稍長一點，效果更優雅 */
+}
+
+/* 步驟三：設定滑鼠懸停時，圖片放大的效果 */
+.project-feature-image:hover img,
+.team-member:hover img {
+    transform: scale(1.05); /* 放大 5% */
 }
