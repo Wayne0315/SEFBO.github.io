@@ -92,74 +92,63 @@ p {
     border-bottom: 1px solid #e0e0e0;
 }
 
-.header-container {
-    display: flex;
-    justify-content: center; /* 將 space-between 改成 center */
-    align-items: center;
-    height: 80px;
-    /* --- 新增這一行 --- */
-    padding: 0 40px; 
-}
-
-.logo {
-    font-size: 2rem;
-    letter-spacing: 2px;
-    color: var(--color-dark);
-    text-decoration: none;
-}
-/* 在 style.css 中加入 */
 .logo-img {
-    max-height: 60px; /* 控制圖片最大高度 */
-    width: auto;     /* 保持圖片比例 */
-    vertical-align: middle; /* 讓圖片與文字垂直對齊，如果旁邊還有文字的話 */
+    max-height: 60px;
+    width: auto;
+    vertical-align: middle;
 }
 
-.main-nav a {
-    color: var(--color-dark);
-    text-decoration: none;
-    margin-left: 35px;
-    font-weight: 700;
-    position: relative;
-    padding-bottom: 5px;
+
+/* --- 4. Hero Section & Slider --- */
+.hero {
+    height: calc(100vh - 80px);
+    margin-top: -80px;
+    padding: 0;
 }
-.main-nav a:after {
+.hero-slider {
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 80px;
+    box-sizing: border-box;
+}
+.swiper-slide::before {
     content: '';
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--color-primary);
-    transition: width 0.3s ease;
-}
-.main-nav a:hover:after {
     width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
 }
-
-/* --- 4. Hero Section 首屏 (僅首頁使用) --- */
-.hero {
-    height: calc(100vh - 80px); /* 減去 header 高度 */
-    margin-top: -80px; /* 抵銷 body 的 padding-top */
-    padding: 0;
-    /* 移除 background, display, align-items, justify-content 等屬性 */
-}
-
 .hero-content {
     position: relative;
     z-index: 2;
-    text-align: left; /* 新增：讓內部的文字都靠左對齊 */
-    padding-left: 20%; /* 新增：增加左邊的留白，讓文字與螢幕邊緣有距離 */
+    text-align: left;
+    padding-left: 8%;
 }
-
-.hero-content h1, .hero-content h2 {
+.hero-content h2 {
     color: var(--color-light);
     text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
 }
-
 .hero-content p {
     color: var(--color-light);
     font-size: 1.5rem;
     max-width: 500px;
+}
+.swiper-button-next, .swiper-button-prev {
+    color: var(--color-light);
+}
+.swiper-pagination-bullet-active {
+    background: var(--color-light);
 }
 
 /* --- 5. 頁面標題 (Page Header) --- */
@@ -181,14 +170,12 @@ p {
     margin-left: auto;
     margin-right: auto;
 }
-
 .projects-grid, .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 40px;
     margin-top: 60px;
 }
-
 .project-item, .team-member {
     background: var(--color-light);
     text-decoration: none;
@@ -247,22 +234,19 @@ p {
 .site-footer {
     background-color: #1a1a1a;
     color: #a0a0a0;
-    padding: 5px 0 1px 0; /* 將上下邊距縮小 */
-    margin-top: auto; /* 將 footer 推到頁面底部 */
+    padding: 40px 0 30px 0;
+    margin-top: auto;
 }
-
 .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     gap: 40px;
 }
-
 .footer-grid h4 {
     color: var(--color-light);
     font-size: 1.2rem;
     margin-bottom: 20px;
 }
-
 .footer-grid p, .footer-grid a {
     color: #a0a0a0;
     text-decoration: none;
@@ -272,73 +256,276 @@ p {
 .footer-grid a:hover {
     color: var(--color-light);
 }
-
 .copyright {
     text-align: center;
-    margin-top: 40px; /* 減少與上方內容的距離 */
-    padding-top: 20px; /* 減少與分隔線的距離 */
+    margin-top: 40px;
+    padding-top: 20px;
     border-top: 1px solid #333;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
+}
+.footer-social {
+    margin-top: 25px;
+}
+.footer-social a svg {
+    width: 28px;
+    height: 28px;
+    fill: #a0a0a0;
+    transition: fill 0.3s ease;
+}
+.footer-social a:hover svg {
+    fill: var(--color-light);
 }
 
-/* --- 9. Hero Slider (Swiper) --- */
-.hero-slider {
+/* --- 9. Map Styles --- */
+#map {
+    height: 450px;
     width: 100%;
-    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background-color: #e0e0e0;
 }
 
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-
-    /* 背景圖片設定 */
-    background-position: center;
-    background-size: cover;
-
-    /* 將內容垂直置中 */
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-    /* --- 以下為新增的兩行 --- */
-    padding-top: 130px;      /* 用來抵銷 Header 的高度 */
-    box-sizing: border-box; /* 確保 padding 不會影響整體高度計算 */
-}
-
-
-/* 為每張圖片加上深色遮罩，確保文字清晰 */
-.swiper-slide::before {
-    content: '';
-    position: absolute;
+/* --- 10. Search Styles --- */
+.search-overlay {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.98);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-
-/* 確保 hero-content 在遮罩上方 */
-.hero-content {
-    position: relative;
-    z-index: 2;
+.search-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
 }
-
-/* Swiper 導航按鈕和分頁圓點的顏色 */
-.swiper-button-next,
-.swiper-button-prev {
-    color: var(--color-light); /* 白色箭頭 */
+.search-content {
+    width: 90%;
+    max-width: 600px;
 }
-
-.swiper-pagination-bullet-active {
-    background: var(--color-light); /* 當前分頁圓點的顏色 */
-}
-
-/* --- 10. Map Styles --- */
-#map {
-    height: 450px;
+#search-input {
     width: 100%;
-    border-radius: 8px; /* 加上圓角讓地圖更好看 */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 加上一些陰影 */
-    background-color: #fffefe; /* 預設背景色 */
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-family: var(--font-primary);
+    border: none;
+    border-bottom: 2px solid var(--color-dark);
+    background: transparent;
+    outline: none;
+}
+.search-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-dark);
+}
+.search-results {
+    margin-top: 40px;
+    max-height: 60vh;
+    overflow-y: auto;
+    text-align: left;
+}
+.search-results .result-item {
+    padding: 20px 10px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+.search-results .result-item:hover {
+    background-color: #f5f5f5;
+}
+.search-results .result-item a {
+    text-decoration: none;
+    color: var(--color-dark);
+    display: block;
+}
+.search-results .result-item h4 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.search-results .result-item p {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+.search-results .no-results {
+    color: #888;
+    font-size: 1.2rem;
+    padding: 20px 10px;
+}
+
+/* --- 11. ADVANCED RESPONSIVE HEADER (Final Version) --- */
+/* ---- Base & Mobile Styles (Mobile First) ---- */
+.header-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.main-nav {
+    display: none;
+}
+.main-nav.is-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-light);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    z-index: 1000;
+}
+.main-nav.is-open a {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-grey);
+    color: var(--color-dark);
+    text-decoration: none;
+    font-weight: 700;
+}
+.main-nav.is-open a:hover {
+    background-color: var(--color-grey);
+}
+.main-nav.is-open a:after {
+    display: none;
+}
+.menu-toggle {
+    display: block;
+    width: 45px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+.menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-dark);
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+}
+.menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+.search-toggle {
+    display: block;
+    width: 45px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    color: var(--color-dark);
+}
+.search-toggle svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* ---- Desktop Styles ---- */
+@media (min-width: 992px) {
+    .header-container {
+        display: flex;
+        align-items: center;
+    }
+    .logo {
+        position: static;
+        transform: none;
+        flex-shrink: 0;
+    }
+    .main-nav {
+        display: flex;
+        margin: 0 auto;
+    }
+    .main-nav a {
+        color: var(--color-dark);
+        text-decoration: none;
+        margin: 0 18px;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 5px;
+    }
+    .main-nav a:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--color-primary);
+        transition: width 0.3s ease;
+    }
+    .main-nav a:hover:after {
+        width: 100%;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    .search-toggle {
+        flex-shrink: 0;
+    }
+
+    /* Reset mobile open state on desktop */
+    .main-nav.is-open {
+        position: static;
+        flex-direction: row;
+        width: auto;
+        background-color: transparent;
+        box-shadow: none;
+        max-height: none;
+        overflow: visible;
+    }
+    .main-nav.is-open a {
+        padding: 0;
+        border-bottom: none;
+        padding-bottom: 5px; /* maintain padding for underline */
+        margin: 0 18px; /* 新增：在電腦版強制恢復連結的左右間距 */
+
+    }
+}
+/* --- 12. Footer Responsive Styles --- */
+@media (max-width: 768px) {
+    /* 讓 footer 整體矮一點 */
+    .site-footer {
+        padding: 20px 0;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 5px; /* 縮小堆疊項目之間的垂直距離 */
+    }
+
+    /* 縮小 copyright 區域的上方間距 */
+    .copyright {
+        margin-top: 30px;
+        padding-top: 10px;
+    }
 }
