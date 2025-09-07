@@ -1,9 +1,26 @@
-/* --- 1. 全域與基礎設定 --- */
+/* =================================================================
+   SEFBO Construction - Refactored Stylesheet
+   =================================================================
+   目錄 (Table of Contents):
+   1.  全域與基礎設定 (Global & Base Styles)
+   2.  通用佈局與元件 (Layout & Reusable Components)
+   3.  網站區塊 (Header & Footer)
+   4.  頁面專屬樣式 (Page-Specific Styles)
+       4.1 首頁 (Homepage - Hero Slider)
+       4.2 專案頁 (Projects Page)
+       4.3 服務頁 (Services Page)
+       4.4 專業技術頁 (Expertise Page)
+       4.5 團隊頁 (People Page)
+       4.6 招募頁 (Career Page)
+       4.7 聯絡頁 (Contact Page)
+   ================================================================= */
+
+/* --- 1. 全域與基礎設定 (Global & Base Styles) --- */
 :root {
-    --color-primary: #D93A3A; /* 品牌主色 - 鮮明的紅色 */
-    --color-dark: #151515;    /* 深色文字與背景 */
-    --color-light: #ffffff;   /* 淺色文字與背景 */
-    --color-grey: #f5f5f5;    /* 淺灰色背景 */
+    --color-primary: #D93A3A;
+    --color-dark: #151515;
+    --color-light: #ffffff;
+    --color-grey: #f5f5f5;
     --font-primary: 'Raleway', 'Helvetica Neue', Arial, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
 }
 
@@ -19,17 +36,7 @@ body {
     color: var(--color-dark);
     line-height: 1.7;
     font-size: 16px;
-    padding-top: 80px; /* 為固定的 Header 預留空間 */
-}
-
-.container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 40px;
-}
-
-section {
-    padding: 120px 0;
+    padding-top: 80px; /* For fixed Header */
 }
 
 img {
@@ -38,33 +45,27 @@ img {
     display: block;
 }
 
-/* --- 2. 字體排版 --- */
 h1, h2, h3, .logo {
     font-weight: 900;
     line-height: 1.2;
     margin: 0;
 }
 
-h1 {
-    font-size: clamp(3.5rem, 6vw, 6rem);
+h1 { font-size: clamp(3.5rem, 6vw, 6rem); }
+h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 24px; }
+h3 { font-size: 1.8rem; font-weight: 700; margin-top: 20px; margin-bottom: 10px; }
+h4 { font-size: 1.4rem; margin-top: 0; margin-bottom: 10px; }
+p { font-size: 1.1rem; max-width: 65ch; margin-bottom: 1rem; }
+
+/* --- 2. 通用佈局與元件 (Layout & Reusable Components) --- */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
 }
 
-h2 {
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    margin-bottom: 24px;
-}
-
-h3 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 1.1rem;
-    max-width: 65ch;
-    margin-bottom: 1rem;
+section.content-section {
+    padding: 120px 0;
 }
 
 .button {
@@ -80,7 +81,34 @@ p {
     background-color: #b02a2a;
 }
 
-/* --- 3. Header 導覽列 --- */
+.separator {
+    width: 85%;
+    max-width: 900px;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 100px auto;
+    border: none;
+}
+
+.page-header {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.cta-section {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    padding: 100px 40px;
+}
+.cta-section h2 { color: var(--color-light); }
+.cta-section p { color: #ccc; max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: 40px; }
+
+
+/* --- 3. 網站區塊 (Header & Footer) --- */
+
+/* 3.1 Header & Navigation */
 .site-header {
     position: fixed;
     top: 0;
@@ -91,321 +119,6 @@ p {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid #e0e0e0;
 }
-
-.logo-img {
-    max-height: 60px;
-    width: auto;
-    vertical-align: middle;
-}
-
-
-/* --- 4. Hero Section & Slider --- */
-.hero {
-    height: calc(100vh - 80px);
-    margin-top: -20px;
-    padding: 0;
-}
-.hero-slider {
-    width: 100%;
-    height: 100%;
-}
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 80px;
-    box-sizing: border-box;
-}
-.swiper-slide::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-.hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: left;
-    padding-left: 8%;
-}
-.hero-content h2 {
-    color: var(--color-light);
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-}
-.hero-content p {
-    color: var(--color-light);
-    font-size: 1.5rem;
-    max-width: 500px;
-}
-.swiper-button-next, .swiper-button-prev {
-    color: var(--color-light);
-}
-.swiper-pagination-bullet-active {
-    background: var(--color-light);
-}
-
-/* --- 5. 頁面標題 (Page Header) --- */
-.page-header {
-    background-color: var(--color-dark);
-    color: var(--color-light);
-    padding: 80px 0;
-    text-align: center;
-}
-
-/* --- Projects Feature Layout --- */
-.project-feature {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 預設兩欄式佈局 */
-    gap: 60px; /* 圖片和文字之間的間距 */
-    align-items: center;
-    margin-bottom: 120px; /* 每一個專案之間的垂直間距 */
-}
-
-/* 關鍵：讓偶數的專案項目 (第2, 4, 6...) 圖片和文字順序對調 */
-.project-feature:nth-child(even) .project-feature-image {
-    order: 2; /* 將圖片的順序改為 2，文字順序預設為 1 */
-}
-
-.project-feature-image img {
-    border-radius: 8px; /* 為圖片加上圓角 */
-}
-
-.project-feature-content .project-category {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #888;
-    letter-spacing: 1px;
-    margin: 0 0 10px 0;
-    text-transform: uppercase;
-}
-
-.project-feature-content h3 {
-    font-size: clamp(1.8rem, 3vw, 2.5rem); /* 標題字體大小 */
-    margin: 0 0 15px 0;
-}
-
-.project-feature-content h3 a {
-    color: var(--color-dark);
-    text-decoration: none;
-}
-
-.project-feature-content p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555;
-    max-width: 50ch; /* 限制段落寬度，更易讀 */
-}
-
-/* --- Responsive Styles for Projects Feature --- */
-@media (max-width: 800px) {
-    .project-feature {
-        grid-template-columns: 1fr; /* 在小螢幕上，改為單欄堆疊 */
-        gap: 30px;
-        margin-bottom: 80px;
-    }
-
-    /* 在小螢幕上，取消順序對調，確保圖片永遠在文字上方 */
-    .project-feature:nth-child(even) .project-feature-image {
-        order: 0; /* 恢復預設順序 */
-    }
-
-    .project-feature-content {
-        text-align: center; /* 手機上文字置中 */
-    }
-    
-    .project-feature-content p {
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-/* --- 7. 聯絡表單 --- */
-.contact-form {
-    max-width: 700px;
-    margin: 60px auto 0 auto;
-    text-align: left;
-}
-.form-group {
-    margin-bottom: 20px;
-}
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 700;
-}
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-family: var(--font-primary);
-}
-.form-group textarea {
-    min-height: 150px;
-}
-
-/* --- 8. 頁尾 --- */
-.site-footer {
-    background-color: #1a1a1a;
-    color: #a0a0a0;
-    padding: 40px 0 30px 0;
-    margin-top: auto;
-}
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 40px;
-}
-.footer-grid > div > h4 {
-    color: var(--color-light);
-    font-size: 1.2rem;
-    font-weight: 900; /* 確保標題是粗體 */
-    margin-bottom: 20px; /* 確保有 20px 的底部間距 */
-}
-.footer-grid p, .footer-grid a {
-    color: #a0a0a0;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 10px;
-}
-.footer-grid a:hover {
-    color: var(--color-light);
-}
-.copyright {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #333;
-    font-size: 0.9rem;
-}
-.footer-social {
-    margin-top: 25px;
-}
-.footer-social a svg {
-    width: 28px;
-    height: 28px;
-    fill: #a0a0a0;
-    transition: fill 0.3s ease;
-}
-.footer-social a:hover svg {
-    fill: var(--color-light);
-}
-
-/* --- 9. Map Styles --- */
-#map {
-    height: 450px;
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    background-color: #e0e0e0;
-}
-
-/* --- 10. Search Styles (Dropdown Panel Version) --- */
-.search-overlay {
-    position: fixed;
-    top: 80px; /* 從 80px 高的 header 下方開始 */
-    left: 0;
-    width: 100%;
-    height: auto; /* 高度由內容和 padding 決定 */
-    background-color: var(--color-light); /* 改為不透明的淺色背景 */
-    z-index: 1001; /* 確保在內容之上，但在 header 之下 (如果 header 是 1000+) */
-    
-    /* 加上陰影和上邊框，看起來像從 header 滑出 */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    border-top: 1px solid #e0e0e0;
-
-    /* 預設隱藏，並加上動畫效果 */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px); /* 向上移動一點，製造滑出效果 */
-    transition: opacity 0.3s ease, visibility 0s 0.3s, transform 0.3s ease;
-}
-
-.search-overlay.is-open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    transition: opacity 0.3s ease, visibility 0s 0s, transform 0.3s ease;
-}
-
-.search-content {
-    width: 90%;
-    max-width: 800px; /* 可以讓搜尋框寬一點 */
-    margin: 0 auto; /* 水平置中 */
-    padding: 40px 0 60px 0; /* 設定上下留白 */
-    position: relative;
-}
-
-#search-input {
-    width: 100%;
-    font-size: 1.5rem; /* 縮小字體，輸入框就會變矮 */
-    font-weight: 700;
-    font-family: var(--font-primary);
-    border: none;
-    border-bottom: 2px solid var(--color-dark);
-    background: transparent;
-    outline: none;
-    padding: 10px 0;
-}
-
-.search-close {
-    position: absolute;
-    top: 35px;
-    right: 0;
-    font-size: 2.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--color-dark);
-}
-
-.search-results {
-    margin-top: 30px;
-    max-height: 50vh; /* 限制最大高度 */
-    overflow-y: auto;
-    text-align: left;
-}
-
-.search-results .result-item {
-    padding: 15px 5px;
-    border-bottom: 1px solid #e0e0e0;
-    transition: background-color 0.3s ease;
-}
-.search-results .result-item:hover {
-    background-color: #f5f5f5;
-}
-.search-results .result-item a {
-    text-decoration: none;
-    color: var(--color-dark);
-    display: block;
-}
-.search-results .result-item h4 {
-    margin: 0 0 5px 0;
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-.search-results .result-item p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.6;
-}
-.search-results .no-results {
-    color: #888;
-    font-size: 1.1rem;
-    padding: 20px 0;
-}
-
-/* --- 11. ADVANCED RESPONSIVE HEADER (Final Version) --- */
-/* ---- Base & Mobile Styles (Mobile First) ---- */
 .header-container {
     position: relative;
     display: flex;
@@ -418,392 +131,331 @@ p {
     left: 50%;
     transform: translateX(-50%);
 }
-.main-nav {
-    display: none;
+.logo-img {
+    max-height: 60px;
+    width: auto;
+    vertical-align: middle;
 }
-.main-nav.is-open {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    background-color: var(--color-light);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    max-height: calc(100vh - 80px);
-    overflow-y: auto;
-    z-index: 1000;
-}
-.main-nav.is-open a {
-    margin: 0;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 1px solid var(--color-grey);
-    color: var(--color-dark);
-    text-decoration: none;
-    font-weight: 700;
-}
-.main-nav.is-open a:hover {
-    background-color: var(--color-grey);
-}
-.main-nav.is-open a:after {
-    display: none;
-}
-.menu-toggle {
-    display: block;
-    width: 45px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1001;
-}
-.menu-toggle .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--color-dark);
-    margin: 5px auto;
-    transition: all 0.3s ease-in-out;
-}
-.menu-toggle.is-active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-.menu-toggle.is-active .bar:nth-child(2) {
-    opacity: 0;
-}
-.menu-toggle.is-active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
-.search-toggle {
-    display: block;
-    width: 45px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    color: var(--color-dark);
-}
-.search-toggle svg {
-    width: 24px;
-    height: 24px;
-}
+.main-nav { display: none; }
+.menu-toggle { display: block; width: 45px; background: none; border: none; cursor: pointer; padding: 10px; z-index: 1001; }
+.menu-toggle .bar { display: block; width: 25px; height: 3px; background-color: var(--color-dark); margin: 5px auto; transition: all 0.3s ease-in-out; }
+.menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+.menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.main-nav.is-open { display: flex; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background-color: var(--color-light); box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-height: calc(100vh - 80px); overflow-y: auto; z-index: 1000; }
+.main-nav.is-open a { margin: 0; padding: 20px; text-align: center; border-bottom: 1px solid var(--color-grey); color: var(--color-dark); text-decoration: none; font-weight: 700; }
+.main-nav.is-open a:hover { background-color: var(--color-grey); }
+.main-nav.is-open a:after { display: none; }
 
-/* ---- Desktop Styles ---- */
+/* 3.2 Header Search */
+.search-toggle { display: block; width: 45px; background: none; border: none; cursor: pointer; padding: 10px; color: var(--color-dark); }
+.search-toggle svg { width: 24px; height: 24px; }
+.search-overlay { position: fixed; top: 80px; left: 0; width: 100%; height: auto; background-color: var(--color-light); z-index: 1001; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-top: 1px solid #e0e0e0; opacity: 0; visibility: hidden; transform: translateY(-20px); transition: opacity 0.3s ease, visibility 0s 0.3s, transform 0.3s ease; }
+.search-overlay.is-open { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity 0.3s ease, visibility 0s 0s, transform 0.3s ease; }
+.search-content { width: 90%; max-width: 800px; margin: 0 auto; padding: 40px 0 60px 0; position: relative; }
+#search-input { width: 100%; font-size: 1.5rem; font-weight: 700; font-family: var(--font-primary); border: none; border-bottom: 2px solid var(--color-dark); background: transparent; outline: none; padding: 10px 0; }
+.search-close { position: absolute; top: 35px; right: 0; font-size: 2.5rem; background: none; border: none; cursor: pointer; color: var(--color-dark); }
+.search-results { margin-top: 30px; max-height: 50vh; overflow-y: auto; text-align: left; }
+.search-results .result-item { padding: 15px 5px; border-bottom: 1px solid #e0e0e0; transition: background-color 0.3s ease; }
+.search-results .result-item:hover { background-color: #f5f5f5; }
+.search-results .result-item a { text-decoration: none; color: var(--color-dark); display: block; }
+.search-results .result-item h4 { margin: 0 0 5px 0; font-size: 1.1rem; font-weight: 700; }
+.search-results .result-item p { margin: 0; font-size: 0.9rem; color: #666; line-height: 1.6; }
+.search-results .no-results { color: #888; font-size: 1.1rem; padding: 20px 0; }
+
+/* 3.3 Header & Search (Desktop Responsive) */
 @media (min-width: 992px) {
-    .header-container {
-        display: flex;
-        align-items: center;
-    }
-    .logo {
-        position: static;
-        transform: none;
-        flex-shrink: 0;
-    }
-    .main-nav {
-        display: flex;
-        margin: 0 auto;
-    }
-    .main-nav a {
-        color: var(--color-dark);
-        text-decoration: none;
-        margin: 0 18px;
-        font-weight: 700;
-        position: relative;
-        padding-bottom: 5px;
-    }
-    .main-nav a:after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: var(--color-primary);
-        transition: width 0.3s ease;
-    }
-    .main-nav a:hover:after {
-        width: 100%;
-    }
-    .menu-toggle {
-        display: none;
-    }
-    .search-toggle {
-        flex-shrink: 0;
-    }
-
-    /* Reset mobile open state on desktop */
-    .main-nav.is-open {
-        position: static;
-        flex-direction: row;
-        width: auto;
-        background-color: transparent;
-        box-shadow: none;
-        max-height: none;
-        overflow: visible;
-    }
-    .main-nav.is-open a {
-        padding: 0;
-        border-bottom: none;
-        padding-bottom: 5px; /* maintain padding for underline */
-        margin: 0 18px; /* 新增：在電腦版強制恢復連結的左右間距 */
-
-    }
+    .header-container { display: flex; align-items: center; }
+    .logo { position: static; transform: none; flex-shrink: 0; }
+    .main-nav { display: flex; margin: 0 auto; }
+    .main-nav a { color: var(--color-dark); text-decoration: none; margin: 0 18px; font-weight: 700; position: relative; padding-bottom: 5px; }
+    .main-nav a:after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--color-primary); transition: width 0.3s ease; }
+    .main-nav a:hover:after { width: 100%; }
+    .menu-toggle { display: none; }
+    .search-toggle { flex-shrink: 0; }
+    .main-nav.is-open { position: static; flex-direction: row; width: auto; background-color: transparent; box-shadow: none; max-height: none; overflow: visible; }
+    .main-nav.is-open a { padding: 0; border-bottom: none; padding-bottom: 5px; margin: 0 18px; }
 }
-/* --- 12. Footer Responsive Styles --- */
+
+/* 3.4 Footer */
+.site-footer { background-color: #1a1a1a; color: #a0a0a0; padding: 40px 0 30px 0; margin-top: auto; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.footer-grid > div > h4 { color: var(--color-light); font-size: 1.2rem; font-weight: 900; margin-bottom: 20px; }
+.footer-grid p, .footer-grid a { color: #a0a0a0; text-decoration: none; display: block; margin-bottom: 10px; }
+.footer-grid a:hover { color: var(--color-light); }
+.copyright { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.9rem; }
+.footer-social { margin-top: 25px; }
+.footer-social a svg { width: 28px; height: 28px; fill: #a0a0a0; transition: fill 0.3s ease; }
+.footer-social a:hover svg { fill: var(--color-light); }
+
+/* 3.5 Footer (Responsive) */
 @media (max-width: 768px) {
-    /* 讓 footer 整體矮一點 */
-    .site-footer {
-        padding: 20px 0;
-    }
-    
-    .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 5px; /* 縮小堆疊項目之間的垂直距離 */
-    }
-
-    /* 縮小 copyright 區域的上方間距 */
-    .copyright {
-        margin-top: 30px;
-        padding-top: 10px;
-    }
+    .site-footer { padding: 20px 0; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 5px; }
+    .copyright { margin-top: 30px; padding-top: 10px; }
 }
 
-/* --- 13. Hero Section Responsive Styles --- */
+
+/* --- 4. 頁面專屬樣式 (Page-Specific Styles) --- */
+
+/* 4.1 首頁 (Homepage - Hero Slider) */
+.hero { height: calc(100vh - 80px); margin-top: -20px; padding: 0; }
+.hero-slider { width: 100%; height: 100%; }
+.swiper-slide { text-align: center; font-size: 18px; background-position: center; background-size: cover; display: flex; justify-content: flex-start; align-items: center; padding-top: 80px; box-sizing: border-box; }
+.swiper-slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
+.hero-content { position: relative; z-index: 2; text-align: left; padding-left: 8%; }
+.hero-content h2 { color: var(--color-light); text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+.hero-content p { color: var(--color-light); font-size: 1.5rem; max-width: 500px; }
+.swiper-button-next, .swiper-button-prev { color: var(--color-light); }
+.swiper-pagination-bullet-active { background: var(--color-light); }
 @media (max-width: 768px) {
-    
-    /* 縮小 Hero 區塊的高度 */
-    .hero {
-        height: 50vh; /* 在小螢幕上，高度改為螢幕高度的 65% */
-    }
-
-    /* 適度縮小標題和內文的字體大小，以符合較小的空間 */
-    .hero-content h2 {
-        font-size: clamp(2rem, 8vw, 2.8rem);
-    }
-
-    .hero-content p {
-        font-size: 1.1rem;
-        max-width: 85%; /* 讓段落可以稍微寬一點 */
-    }
+    .hero { height: 50vh; }
+    .hero-content h2 { font-size: clamp(2rem, 8vw, 2.8rem); }
+    .hero-content p { font-size: 1.1rem; max-width: 85%; }
 }
 
+/* 4.2 專案頁 (Projects Page) */
+#map { height: 450px; width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background-color: #e0e0e0; }
+.project-feature { display: flex; gap: 50px; align-items: center; }
+.project-feature-image, .project-feature-content { flex: 1; }
+.project-feature:nth-of-type(even) { flex-direction: row-reverse; }
+.project-feature-image { overflow: hidden; } /* For hover effect */
+.project-feature-image img { border-radius: 8px; transition: transform 0.4s ease-in-out; }
+.project-feature-image:hover img { transform: scale(1.05); }
 
-/* --- 14. Universal Image Hover Zoom Effect --- */
-
-/* 步驟一：為所有需要效果的圖片容器加上 overflow: hidden */
-/* 這能確保放大的圖片不會超出容器的邊界，特別是在有圓角的情況下 */
-.project-feature-image,
-.team-member {
-    overflow: hidden;
+/* 4.3 服務頁 (Services Page) */
+.service-feature-section { display: flex; align-items: center; gap: 60px; }
+.service-feature-image, .service-feature-content { flex: 1; min-width: 0; }
+.service-feature-image img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.service-feature-content h2 { margin-top: 0; font-size: clamp(2rem, 3.5vw, 3rem); }
+.service-feature-section.reverse { flex-direction: row-reverse; }
+.maintenance-list ul { list-style: none; padding-left: 0; margin-top: 10px; }
+.maintenance-list ul li { padding-left: 25px; position: relative; margin-bottom: 8px; }
+.maintenance-list ul li::before { content: '✔'; color: var(--color-primary); position: absolute; left: 0; }
+.service-scope-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px 60px; margin-top: 60px; max-width: 1000px; margin-left: auto; margin-right: auto; }
+.service-scope-grid ul { list-style: none; padding-left: 0; }
+.service-scope-grid ul li { font-size: 1.1rem; padding: 12px 0; border-bottom: 1px solid #eee; }
+.solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 60px; }
+.solution-item { background: #f9f9f9; padding: 35px; border-radius: 8px; }
+.solution-item h3 { margin-top: 0; color: var(--color-primary); }
+.maintenance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+.maintenance-item { text-align: center; padding: 30px; }
+.maintenance-item h4 { font-size: 1.5rem; }
+@media (max-width: 768px) {
+    .service-feature-section { flex-direction: column; gap: 40px; }
+    .service-feature-section.reverse { flex-direction: column; }
 }
 
-/* 步驟二：為所有目標圖片設定過渡動畫 */
-.project-feature-image img,
-.team-member img {
-    transition: transform 0.4s ease-in-out; /* 動畫時間可以稍長一點，效果更優雅 */
-}
+/* 4.4 專業技術頁 (Expertise Page) */
+.feature-list { margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
+.feature-list h4 { font-size: 1.5rem; margin-bottom: 20px; }
+.feature-list ul { list-style: none; padding-left: 0; }
+.feature-list ul li { font-size: 1.1rem; padding-left: 35px; position: relative; margin-bottom: 15px; }
+.feature-list ul li::before { content: '✔'; color: var(--color-primary); position: absolute; left: 0; top: 0; font-weight: bold; }
+.analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 60px; }
+.analysis-item { background-color: #f9f9f9; padding: 30px; border-radius: 8px; border-bottom: 4px solid var(--color-primary); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.analysis-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+.analysis-item h3 { margin-top: 0; }
 
-/* 步驟三：設定滑鼠懸停時，圖片放大的效果 */
-.project-feature-image:hover img,
-.team-member:hover img {
-    transform: scale(1.05); /* 放大 5% */
-}
-
-/* --- 12. Separator Line --- */
-.separator {
-    width: 85%;                 /* 線的寬度，不要佔滿全寬，看起來更精緻 */
-    max-width: 900px;             /* 在大螢幕上，線的最大寬度 */
-    height: 1px;                  /* 線的高度 (粗細) */
-    background-color: #e0e0e0;    /* 線的顏色 (淺灰色) */
-    margin: 100px auto;           /* 上下留出 100px 的間距，auto 則讓線水平置中 */
-    border: none;                 /* 清除預設邊框 */
-}
-
-.project-feature {
-    display: flex;
-    gap: 50px; /* 圖片和文字之間的間距 */
-    align-items: center; /* 垂直置中對齊 */
-}
-
-.project-feature-image,
-.project-feature-content {
-    flex: 1; /* 讓圖片和文字各佔一半的寬度 */
-}
-/* 選取類型為 project-feature 的偶數元素，並將其方向反轉 */
-.project-feature:nth-of-type(even) {
-    flex-direction: row-reverse; /* 關鍵修正！*/
-}
-
-
-/* --- 14. Career Page Styles --- */
-.values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    margin-top: 60px;
-    text-align: center;
-}
-
-.value-item svg {
-    width: 48px;
-    height: 48px;
-    stroke-width: 1.5px;
-    color: var(--color-primary);
-    margin-bottom: 20px;
-}
-
-.perks-grid {
+/* 4.5 團隊頁 (People Page) */
+.team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    gap: 40px;
+    margin-top: 60px;
 }
-
-.perk-item {
-    background-color: #f9f9f9;
-    padding: 30px;
+.team-member {
+    text-align: center;
+    overflow: hidden; /* For hover effect */
+}
+.team-member img {
     border-radius: 8px;
-    border-left: 4px solid var(--color-primary);
+    transition: transform 0.4s ease-in-out;
+    width: 100%;
 }
-
-.perk-item h4 {
-    font-size: 1.4rem;
-    margin-top: 0;
-    margin-bottom: 10px;
+.team-member:hover img {
+    transform: scale(1.05);
 }
-
-.cta-section {
-    background-color: var(--color-dark);
-    color: var(--color-light);
-    padding: 100px 0;
+.team-info {
+    margin-top: 20px;
 }
-
-.cta-section h2 {
-    color: var(--color-light);
-}
-
-.cta-section p {
-    color: #ccc;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 40px;
-}
-
-
-/* --- 15. Expertise Page Styles --- */
-.feature-list {
-    margin-top: 40px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.feature-list h4 {
+.team-info h3 {
+    margin: 0 0 5px 0;
     font-size: 1.5rem;
-    margin-bottom: 20px;
+}
+.team-info .title {
+    color: #888;
+    font-size: 1rem;
+    font-weight: 700;
 }
 
-.feature-list ul {
-    list-style: none;
-    padding-left: 0;
+/* 4.6 招募頁 (Career Page) */
+.values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; text-align: center; }
+.value-item svg { width: 48px; height: 48px; stroke-width: 1.5px; color: var(--color-primary); margin-bottom: 20px; }
+.perks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.perk-item { background-color: #f9f9f9; padding: 30px; border-radius: 8px; border-left: 4px solid var(--color-primary); }
+
+/* --- 4.7 聯絡頁 (Contact Page) --- */
+
+/* Hero Section Styles (新版) */
+.contact-hero-section {
+    position: relative; /* 關鍵：作為絕對定位的基準 */
+    min-height: 500px;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--color-light);
+    overflow: hidden; /* 隱藏超出範圍的內容 */
 }
 
-.feature-list ul li {
-    font-size: 1.1rem;
-    padding-left: 35px;
-    position: relative;
-    margin-bottom: 15px;
-}
-
-/* 製作一個好看的打勾圖示 */
-.feature-list ul li::before {
-    content: '✔';
-    color: var(--color-primary);
+.contact-hero-image {
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* 圖片在最底層 */
+}
+
+.contact-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 關鍵：讓圖片填滿容器，不變形 */
+    object-position: center;
+}
+
+.contact-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1; /* 遮罩在圖片之上 */
+}
+
+.contact-hero-content {
+    position: relative;
+    z-index: 2; /* 文字在最上層 */
+    text-align: left;
+    max-width: 600px;
+    padding-left: 5%;
+    padding-top: 60px;
+}
+
+.contact-hero-content h1 {
+    font-size: clamp(3.5rem, 6vw, 5rem);
+    margin-bottom: 20px;
+    font-weight: 900;
+    line-height: 1.1;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+.contact-hero-content p {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    max-width: 90%;
+}
+
+.contact-hero-content a {
+    color: var(--color-light);
     font-weight: bold;
+    text-decoration: underline;
+    transition: color 0.3s;
 }
-
-.analysis-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
-}
-
-.analysis-item {
-    background-color: #f9f9f9;
-    padding: 30px;
-    border-radius: 8px;
-    border-bottom: 4px solid var(--color-primary);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.analysis-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-}
-
-.analysis-item h3 {
-    margin-top: 0;
+.contact-hero-content a:hover {
+    color: var(--color-primary);
 }
 
 
-/* --- 16. Services Page Styles --- */
-.service-scope-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px 60px; /* row-gap, column-gap */
-    margin-top: 60px;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+/* Form Layout Styles (維持不變) */
+.contact-form-layout {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 40px;
 }
-
-.service-scope-grid ul {
-    list-style: none;
-    padding-left: 0;
+.contact-form-intro {
+    text-align: center;
+    margin-bottom: 60px;
 }
-
-.service-scope-grid ul li {
-    font-size: 1.1rem;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.solutions-grid {
+/* ... (以下表單樣式與前一版相同，請確保它們都在這裡) ... */
+.floating-label-form .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-top: 60px;
+    gap: 35px;
 }
-
-.solution-item {
-    background: #f9f9f9;
-    padding: 35px;
-    border-radius: 8px;
+.floating-label-form .form-group {
+    position: relative;
 }
-
-.solution-item h3 {
-    margin-top: 0;
-    color: var(--color-primary);
+.floating-label-form .form-group.full-width {
+    grid-column: 1 / -1;
+    margin-top: 35px; /* 【新增】增加與上方欄位的間距 */
 }
-
-.maintenance-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
+.floating-label-form input,
+.floating-label-form textarea,
+.floating-label-form select {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    outline: none;
+    transition: border-color 0.3s;
+    position: relative;
+    z-index: 1;
 }
-
-.maintenance-item {
-    text-align: center;
-    padding: 30px;
+.floating-label-form label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    color: #888;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    z-index: 0;
 }
+.floating-label-form input:focus,
+.floating-label-form textarea:focus,
+.floating-label-form select:focus {
+    border-color: var(--color-dark);
+}
+.floating-label-form input:focus + label,
+.floating-label-form input:not(:placeholder-shown) + label,
+.floating-label-form textarea:focus + label,
+.floating-label-form textarea:not(:placeholder-shown) + label,
+.floating-label-form select:valid + label {
+    top: -18px;
+    font-size: 0.85rem;
+    color: var(--color-dark);
+}
+.floating-label-form input::placeholder { color: transparent; }
+.floating-label-form textarea { min-height: 120px; resize: vertical; }
+.floating-label-form .char-count { position: absolute; bottom: -20px; right: 0; font-size: 0.8rem; color: #888; }
+.floating-label-form .form-submit { margin-top: 50px; text-align: center; }
 
-.maintenance-item h4 {
-    font-size: 1.5rem;
+
+/* Responsive Design (維持不變) */
+@media (max-width: 768px) {
+    .contact-hero-section {
+        min-height: 350px;
+        height: 50vh;
+        text-align: center;
+        justify-content: center;
+    }
+    .contact-hero-content {
+        max-width: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .contact-hero-content h1 {
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+    }
+    .contact-hero-content p {
+        font-size: clamp(1rem, 3vw, 1.2rem);
+    }
+    .floating-label-form .form-grid {
+        grid-template-columns: 1fr;
+    }
 }
