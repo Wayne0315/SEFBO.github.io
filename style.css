@@ -164,6 +164,15 @@ section.content-section {
 .search-results .no-results { color: #888; font-size: 1.1rem; padding: 20px 0; }
 
 /* 3.3 Header & Search (Desktop Responsive) */
+
+.main-nav a.active-link {
+    color: var(--color-primary); /* 將文字顏色設定為主要紅色 */
+}
+
+/* 在桌機版，讓啟用中的連結底部紅線持續顯示 */
+.main-nav a.active-link::after {
+    width: 100%;
+}
 @media (min-width: 992px) {
     .header-container { display: flex; align-items: center; }
     .logo { position: static; transform: none; flex-shrink: 0; }
@@ -301,7 +310,7 @@ section.content-section {
 .contact-hero-section {
     position: relative; /* 關鍵：作為絕對定位的基準 */
     min-height: 500px;
-    height: 70vh;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: flex-start;

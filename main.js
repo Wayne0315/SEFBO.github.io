@@ -9,6 +9,26 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 headerPlaceholder.innerHTML = data;
 
+                // ---【新增】標示當前頁面連結的邏輯 ---
+                function highlightActiveLink() {
+                    const navLinks = document.querySelectorAll('#main-nav a');
+                    // 取得當前頁面的檔案名稱，例如 "contact.html"
+                    const currentPage = window.location.pathname.split('/').pop();
+
+                    navLinks.forEach(link => {
+                        const linkPage = link.getAttribute('href');
+
+                        // 如果連結的 href 與當前頁面檔案名稱相符，就加上 active-link class
+                        // 特別處理首頁 (當 currentPage 為空或 "index.html" 時)
+                        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+                            link.classList.add('active-link');
+                        }
+                    });
+                }
+                highlightActiveLink();
+                // --- 新增邏輯結束 ---
+
+
                 // ---- 漢堡選單邏輯 ----
                 const menuToggle = document.getElementById('menu-toggle');
                 const mainNav = document.getElementById('main-nav');
@@ -26,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 const searchInput = document.getElementById('search-input');
                 const searchResultsContainer = document.getElementById('search-results');
 
-                // 搜尋功能需要 search-index.json，我們只處理開關
                 if (searchToggle && searchOverlay && searchClose) {
                     searchToggle.addEventListener('click', function() {
                         searchOverlay.classList.add('is-open');
@@ -35,10 +54,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     searchClose.addEventListener('click', function() {
                         searchOverlay.classList.remove('is-open');
-                    });
+});
                 }
 
-                // ---- 搜尋功能核心邏輯 (如果您有 search-index.json 的話) ----
+                // ---- 搜尋功能核心邏輯 ----
                 let searchData = [];
                 fetch('search-index.json')
                     .then(response => {
@@ -79,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
                     })
                     .catch(error => {
-                        console.warn(error.message); // 如果找不到 search-index.json，只在 console 提示，不影響網站運作
+                        console.warn(error.message);
                     });
             });
     }
