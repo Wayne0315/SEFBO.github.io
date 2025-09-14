@@ -508,12 +508,14 @@ section.content-section {
     position: relative;
     z-index: 1;
     border-radius: 6px 6px 0 0;
+    /* 【修正二】移除文字置中 */
+    /* text-align: center; */
 }
 .floating-label-form label {
     position: absolute;
-    top: 50%; /* 【修正】先將頂部對齊容器的中心 */
-    transform: translateY(-50%); /* 【修正】再向上移動自身高度的 50%，達成完美垂直置中 */
+    top: 18px; /* 【修正一】微調垂直位置，您可以試著改成 18px 或 22px 看看哪個最順眼 */
     left: 15px;
+    transform: translateY(0); /* 取消之前的 transform 設定 */
     color: #888;
     pointer-events: none;
     transition: all 0.2s ease;
@@ -531,8 +533,8 @@ section.content-section {
 .floating-label-form textarea:not(:placeholder-shown) + label,
 .floating-label-form select:valid + label {
     top: 6px;
-    left: 15px; /* 【修正】啟用時，移回左邊 */
-    transform: translateX(0); /* 【修正】啟用時，取消置中偏移 */
+    left: 15px;
+    transform: translateY(0);
     font-size: 0.6rem;
     color: var(--color-dark);
 }
@@ -541,6 +543,10 @@ section.content-section {
 .floating-label-form .char-count { position: absolute; bottom: -20px; right: 0; font-size: 0.8rem; color: #888; }
 .floating-label-form .form-submit { margin-top: 50px; text-align: center; }
 
+/* Responsive Design for Hero and Form (維持不變) */
+@media (max-width: 768px) {
+    /* ... (此處的響應式樣式維持不變) ... */
+}
 /* --- 【新增】表單驗證提示樣式 --- */
 .validation-message {
     color: var(--color-primary); /* 紅色文字 */
