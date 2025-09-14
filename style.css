@@ -187,62 +187,117 @@ section.content-section {
 }
 
 /* --- 3.4 Footer --- */
-.site-footer { 
-    background-color: #1a1a1a; 
-    color: #a0a0a0; 
-    padding: 40px 0 30px 0; 
-    margin-top: auto; 
-}
-.footer-grid { 
-    display: grid; 
-    grid-template-columns: 2fr 1fr 1fr; 
-    gap: 40px; 
-}
-.footer-grid > div > h4 { 
-    color: var(--color-light); 
-    font-size: 1.2rem; 
-    font-weight: 900; 
-    margin-bottom: 20px; 
-}
-.footer-grid p, .footer-grid a { 
-    color: #a0a0a0; 
-    text-decoration: none; 
-    display: block; 
-    margin-bottom: 10px; 
-}
-.footer-grid a:hover { 
-    color: var(--color-light); 
+.site-footer {
+    background-color: #1a1a1a;
+    color: #a0a0a0;
+    padding: 40px 0 25px 0; /* 【修改】減少了上下的 padding */
+    margin-top: auto;
 }
 
-.copyright {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #333;
-    /* 【修改】移除這裡的 font-size */
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
 }
-.copyright p {
-    margin: 0;
-    font-size: 0.8rem; /* 【修正】將 font-size 直接加在這裡 */
+
+.footer-column h4 {
+    color: var(--color-light);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
-.copyright a svg {
-    width: 24px;
-    height: 24px;
-    fill: #a0a0a0;
-    transition: fill 0.3s ease;
+
+.footer-column .footer-logo {
+    color: var(--color-light);
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.footer-column p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.footer-column a {
+    color: #a0a0a0;
+    text-decoration: none;
     display: block;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
 }
-.copyright a:hover svg {
-    fill: var(--color-light);
+
+.footer-column a:hover {
+    color: var(--color-light);
 }
-/* 3.5 Footer (Responsive) */
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px; /* 【修改】減少了與上方主區塊的距離 */
+    padding-top: 20px; /* 【修改】減少了與分隔線的距離 */
+    border-top: 1px solid #333;
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-bottom .copyright-text,
+.footer-bottom .secondary-contact {
+    margin: 0;
+}
+.footer-bottom a {
+    color: #a0a0a0;
+    text-decoration: none;
+}
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid #333;
+    font-size: 0.8rem;
+    flex-wrap: wrap; /* 在小螢幕上換行 */
+    gap: 15px;
+}
+
+.footer-bottom .copyright-text,
+.footer-bottom .secondary-contact {
+    margin: 0;
+}
+.footer-bottom a {
+    color: #a0a0a0;
+    text-decoration: none;
+}
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+
+/* --- 3.5 Footer (Responsive) --- */
 @media (max-width: 768px) {
-    .site-footer { padding: 20px 0; }
-    .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 5px; }
-    .copyright { margin-top: 30px; padding-top: 10px; }
+    .site-footer {
+        padding: 40px 0 20px 0;
+    }
+    .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 【修正】改為響應式四欄佈局 */
+    gap: 30px; /* 稍微縮小間距 */
+}
+    .footer-bottom {
+        flex-direction: column; /* 手機版改為垂直堆疊 */
+        align-items: center;
+        text-align: center;
+    }
 }
 
 
@@ -726,4 +781,80 @@ section.content-section {
         align-items: center;
         text-align: center;
     }
+}
+
+/* --- Additional Styles for People Page Image --- */
+.team-hero-image-container {
+    width: 100%;
+    height: 400px; /* You can adjust the height */
+    margin-bottom: 80px; /* Space between the image and the team list */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.team-hero-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This makes the image cover the area without distortion */
+}
+
+/* Responsive adjustment for smaller screens */
+@media (max-width: 768px) {
+    .team-hero-image-container {
+        height: 250px;
+        margin-bottom: 60px;
+    }
+}
+
+/* --- 通用頁面 Hero 樣式 --- */
+.page-hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--color-light);
+    text-align: left;
+    overflow: hidden;
+}
+.page-hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+.page-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.page-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+.page-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: 0 40px;
+}
+.page-hero-content h1 {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+.page-hero-content p {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    max-width: 90%;
+    margin-top: 15px;
 }
