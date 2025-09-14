@@ -1,3 +1,26 @@
+    // --- 【新增】漸進式出現 (Fade-in on Scroll) 動畫 ---
+    const teamItems = document.querySelectorAll('.team-list-item');
+
+    const observerOptions = {
+        root: null, // 觀察整個視窗
+        rootMargin: '0px',
+        threshold: 0.1 // 當元素有 10% 進入視窗時觸發
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                observer.unobserve(entry.target); // 元素已出現，停止觀察
+            }
+        });
+    }, observerOptions);
+
+    teamItems.forEach(item => {
+        observer.observe(item);
+    });
+
+
 document.addEventListener("DOMContentLoaded", function() {
 
     const headerPlaceholder = document.getElementById('header-placeholder');
@@ -111,3 +134,4 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 });
+
