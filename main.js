@@ -1,6 +1,9 @@
-    // --- 【新增】漸進式出現 (Fade-in on Scroll) 動畫 ---
-    const teamItems = document.querySelectorAll('.team-list-item');
+// --- 【更新】通用漸進式出現 (Fade-in on Scroll) 動畫 ---
+// 這個版本會同時作用於 people.html 和 projects.html
+const animatedItems = document.querySelectorAll('.team-member, .project-feature');
 
+// 如果頁面上沒有需要動畫的元素，就提前結束，避免錯誤
+if (animatedItems.length > 0) {
     const observerOptions = {
         root: null, // 觀察整個視窗
         rootMargin: '0px',
@@ -10,15 +13,17 @@
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-                observer.unobserve(entry.target); // 元素已出現，停止觀察
+                // 為進入畫面的元素加上 'is-visible' class 來觸發動畫
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // 元素已出現，停止觀察以提升效能
             }
         });
     }, observerOptions);
 
-    teamItems.forEach(item => {
+    animatedItems.forEach(item => {
         observer.observe(item);
     });
+}
 
 
 document.addEventListener("DOMContentLoaded", function() {
