@@ -783,29 +783,6 @@ section.content-section {
     }
 }
 
-/* --- Additional Styles for People Page Image --- */
-.team-hero-image-container {
-    width: 100%;
-    height: 400px; /* You can adjust the height */
-    margin-bottom: 80px; /* Space between the image and the team list */
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.team-hero-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* This makes the image cover the area without distortion */
-}
-
-/* Responsive adjustment for smaller screens */
-@media (max-width: 768px) {
-    .team-hero-image-container {
-        height: 250px;
-        margin-bottom: 60px;
-    }
-}
 
 /* --- 通用頁面 Hero 樣式 --- */
 .page-hero-section {
@@ -857,6 +834,24 @@ section.content-section {
     text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
     max-width: 350%;
     margin-top: 15px;
+}
+
+/* --- 【更新】通用頁面 Hero 樣式 - RWD 優化 --- */
+@media (max-width: 768px) {
+
+    .page-hero-section {
+        height: 60vh;
+        min-height: 400px;
+    }
+
+    .page-hero-content {
+        padding: 0 25px;
+    }
+
+    /* 在手機等小螢幕上，直接隱藏 More 按鈕 */
+    .scroll-down-prompt {
+        display: none;
+    }
 }
 
 /* --- 通用元件：頁首區塊的向下滾動按鈕 --- */
