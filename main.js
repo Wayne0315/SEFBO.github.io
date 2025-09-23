@@ -140,3 +140,25 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+// --- 【新增】平滑滾動到指定區塊的功能 ---
+document.addEventListener("DOMContentLoaded", function() {
+    const scrollLinks = document.querySelectorAll('.scroll-down-prompt');
+
+    scrollLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // 1. 防止瞬間跳轉的預設行為
+            e.preventDefault();
+
+            // 2. 取得目標區塊的 ID (例如 "#engineering")
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            // 3. 如果目標區塊存在，就平滑滾動到那裡
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});

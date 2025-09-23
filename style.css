@@ -304,19 +304,71 @@ section.content-section {
 /* --- 4. 頁面專屬樣式 (Page-Specific Styles) --- */
 
 /* 4.1 首頁 (Homepage - Hero Slider) */
-.hero { height: calc(100vh - 80px); margin-top: -20px; padding: 0; }
-.hero-slider { width: 100%; height: 100%; }
-.swiper-slide { text-align: center; font-size: 18px; background-position: center; background-size: cover; display: flex; justify-content: flex-start; align-items: center; padding-top: 80px; box-sizing: border-box; }
+.hero { height: calc(100vh - 80px); margin-top: 0px; padding: 0; }
+.hero-slider {
+     width: 100%; height: 100%;
+    --swiper-navigation-color: #FFFFFF; /* 將「左右箭頭」顏色設定為白色 */
+    --swiper-pagination-color: #FFFFFF;  /* 將「當前分頁圓點」顏色也設定為白色 */
+}
+/* 讓非啟用狀態的圓點變成半透明的白色，視覺效果更好 */
+.swiper-pagination-bullet {
+    background-color: #FFFFFF;
+    opacity: 0.6;
+}
+.swiper-slide { text-align: center; font-size: 18px; background-position: center; background-size: cover; display: flex; justify-content: flex-start; align-items: center; padding-top: 300px; box-sizing: border-box; }
 .swiper-slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
-.hero-content { position: relative; z-index: 2; text-align: left; padding-left: 8%; }
-.hero-content h2 { color: var(--color-light); text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-.hero-content p { color: var(--color-light); font-size: 1.5rem; max-width: 500px; }
-.swiper-button-next, .swiper-button-prev { color: var(--color-light); }
-.swiper-pagination-bullet-active { background: var(--color-light); }
+.hero-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    z-index: 2;
+    padding: 0 40px;
+    /* 移除 width: 100%; 讓容器寬度由內容決定 */
+    max-width: 1100px;
+    box-sizing: border-box;
+    /* 新增 margin: auto; 確保在 Flex 容器中完美置中 */
+    margin: auto;
+}
+
+.hero-content h2 {
+    color: var(--color-light);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    text-align: right;   /* 標題文字靠右對齊 */
+    flex-shrink: 0;      /* 避免標題寬度被壓縮 */
+    margin: 0;
+}
+
+.hero-content p {
+    color: var(--color-light);
+    font-size: 1.5rem;
+    max-width: 450px;
+    text-align: left;    /* 段落文字靠左對齊 */
+    margin: 0;
+    /* --- 【新增】讓段落往下移動 --- */
+    position: relative; /* 啟用相對定位 */
+    top: 0px;          /* 將段落從原始位置向下移動 15px，您可以調整此數值 */
+}
+
+
+/* --- 【新增】響應式設計：在小螢幕上改回垂直堆疊 --- */
 @media (max-width: 768px) {
-    .hero { height: 50vh; }
-    .hero-content h2 { font-size: clamp(2rem, 8vw, 2.8rem); }
-    .hero-content p { font-size: 1.1rem; max-width: 85%; }
+    .hero-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .hero-content h2,
+    .hero-content p {
+        text-align: center;
+    }
+
+    /* --- 【新增】在手機版面重置位移 --- */
+    .hero-content p {
+        top: 0; /* 在垂直排列時，將向下的位移歸零 */
+    }
 }
 
 /* 4.2 專案頁 (Projects Page) */
@@ -758,7 +810,7 @@ section.content-section {
 /* --- 通用頁面 Hero 樣式 --- */
 .page-hero-section {
     position: relative;
-    height: 100vh;
+    height: 95vh;
     min-height: 350px;
     display: flex;
     align-items: center;
@@ -803,6 +855,36 @@ section.content-section {
 .page-hero-content p {
     font-size: clamp(1.1rem, 2vw, 1.4rem);
     text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-    max-width: 90%;
+    max-width: 350%;
     margin-top: 15px;
+}
+
+/* --- 通用元件：頁首區塊的向下滾動按鈕 --- */
+.scroll-down-prompt {
+    position: absolute; /* 相對於 .page-hero-section 定位 */
+    right: 40px;      /* 距離右邊 40px */
+    bottom: 40px;     /* 距離底部 40px */
+    z-index: 3;       /* 確保在圖片和遮罩之上 */
+    
+    /* 按鈕外觀 */
+    color: #FFFFFF;
+    background-color: transparent;
+    border: 2px solid #FFFFFF;
+    border-radius: 50px; /* 圓角 */
+    padding: 10px 20px;
+    
+    /* 文字與圖示排版 */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 文字與箭頭的間距 */
+    
+    /* 其他樣式 */
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 平滑過渡效果 */
+}
+
+.scroll-down-prompt:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* 滑鼠懸停時的背景色 */
 }
