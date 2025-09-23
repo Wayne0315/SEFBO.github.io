@@ -836,7 +836,10 @@ section.content-section {
     margin-top: 15px;
 }
 
+/* 你的 style.css 檔案所有其他內容... */
+
 /* --- 【更新】通用頁面 Hero 樣式 - RWD 優化 --- */
+/* (請確保這段在檔案的最後面) */
 @media (max-width: 768px) {
 
     .page-hero-section {
@@ -848,10 +851,10 @@ section.content-section {
         padding: 0 25px;
     }
 
-    /* 在手機等小螢幕上，直接隱藏 More 按鈕 */
     .scroll-down-prompt {
-        display: none;
+        display: none !important; /* 確認這裡有 !important */
     }
+
 }
 
 /* --- 通用元件：頁首區塊的向下滾動按鈕 --- */
