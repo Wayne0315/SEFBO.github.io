@@ -194,11 +194,14 @@ section.content-section {
     margin-top: auto;
 }
 
+/* 將 footer-grid 修改為三欄式佈局 */
 .footer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
+    /* 改為明確的三欄，並調整比例，讓中間的 Navigation 窄一些 */
+    grid-template-columns: 1.5fr 1fr 1fr; 
+    gap: 10px;
 }
+
 
 .footer-column h4 {
     color: var(--color-light);
@@ -234,18 +237,30 @@ section.content-section {
     color: var(--color-light);
 }
 
+/* 將 footer-bottom 修改為置中、文字縮小 */
 .footer-bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* 從 space-between 改為 center */
     align-items: center;
-    margin-top: 30px; /* 【修改】減少了與上方主區塊的距離 */
-    padding-top: 20px; /* 【修改】減少了與分隔線的距離 */
+    margin-top: 30px;
+    padding-top: 20px;
     border-top: 1px solid #333;
-    font-size: 0.8rem;
+    font-size: 0.5rem; /* 將文字從 0.8rem 縮小為 0.75rem */
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px;
+}
+/* --- Footer 樣式微調 --- */
+.footer-column .margin-top-large {
+    margin-top: 30px;
 }
 
+/* 新增微調間距的 class */
+.footer-column .margin-top-small {
+    margin-top: 15px;
+}
+.footer-column .office-email {
+    margin-bottom: 0; /* 移除 email 和下方地址之間的間距 */
+}
 .footer-bottom .copyright-text,
 .footer-bottom .secondary-contact {
     margin: 0;
@@ -259,17 +274,7 @@ section.content-section {
 }
 
 
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 50px;
-    padding-top: 25px;
-    border-top: 1px solid #333;
-    font-size: 0.8rem;
-    flex-wrap: wrap; /* 在小螢幕上換行 */
-    gap: 15px;
-}
+
 
 .footer-bottom .copyright-text,
 .footer-bottom .secondary-contact {
@@ -282,7 +287,12 @@ section.content-section {
 .footer-bottom a:hover {
     text-decoration: underline;
 }
-
+/* --- Footer RWD 微調：在手機版隱藏 Navigation --- */
+@media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none;
+    }
+}
 /* --- 3.5 Footer (Responsive) --- */
 @media (max-width: 768px) {
     .site-footer {
@@ -371,6 +381,116 @@ section.content-section {
     }
 }
 
+/* --- 【新增】首頁 - 關於我們摘要區塊 --- */
+.about-summary-section {
+    background-color: var(--color-grey); /* 淡灰色背景 */
+    padding: 100px 0;
+    text-align: center;
+}
+
+.about-summary-content h2 {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-summary-content p {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 60px;
+}
+
+.services-grid {
+    display: grid;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* --- 【核心修改】使用媒體查詢控制欄數 --- */
+    /* 1. 預設 (手機版)：單欄顯示 */
+    grid-template-columns: 1fr;
+}
+.service-item {
+    background-color: var(--color-light); /* 白色背景 */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.service-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-primary); /* 紅色圓形背景 */
+    color: var(--color-light); /* 圖示為白色 */
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.service-item h4 {
+    font-size: 1.3rem;
+    margin: 0;
+      /* --- 【新增】強制不換行並處理過長文字 --- */
+    white-space: nowrap;      /* 關鍵：強制文字不換行 */
+    overflow: hidden;         /* 隱藏超出容器範圍的文字 */
+    text-overflow: ellipsis;  /* 將被隱藏的文字以 "..." 顯示 */
+}
+
+.about-summary-cta {
+    margin-top: 60px;
+}
+/* 1. 為圖示本身加入 transition，讓動畫過程更平滑 */
+.service-icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 2. 當滑鼠移到任一 service-item 上時，改變其內部 service-icon 的樣式 */
+.service-item:hover .service-icon {
+    transform: rotate(15deg) scale(1.15); /* 讓圖示旋轉 15 度並放大 15% */
+}
+
+/* --- 首頁：公司信譽介紹區塊 --- */
+
+.two-column-layout {
+    display: flex;
+    align-items: center; /* 讓圖片和文字垂直置中對齊 */
+    gap: 60px; /* 圖片和文字之間的間距 */
+}
+
+.column-image,
+.column-text {
+    flex: 1; /* 讓兩欄平分寬度 */
+    min-width: 0; /* flex 佈局中的安全設定 */
+}
+
+.column-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.column-text h2 {
+    margin-top: 0;
+    font-size: clamp(2rem, 3.5vw, 3rem); /* 自動縮放的文字大小 */
+}
+
+.column-text .button {
+    margin-top: 20px;
+}
+
+/* --- RWD：在手機版面改為垂直堆疊 --- */
+@media (max-width: 768px) {
+    .two-column-layout {
+        flex-direction: column; /* 改為垂直排列 */
+        gap: 40px;
+        text-align: center; /* 讓文字在手機上置中 */
+    }
+}
+
 /* 4.2 專案頁 (Projects Page) */
 #map { height: 450px; width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background-color: #e0e0e0; }
 .project-feature { display: flex; gap: 50px; align-items: center; }
@@ -391,7 +511,21 @@ section.content-section {
     opacity: 1;
     transform: translateY(0);
 }
+@media (min-width: 576px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
+@media (min-width: 992px) {
+    .services-grid {
+        /* 將欄位寬度改為固定值，而非填滿 */
+        grid-template-columns: repeat(2, 350px);
+        
+        /* 關鍵：將整個網格內容（四張卡片）在容器內置中對齊 */
+        justify-content: center;
+    }
+}
 /* 新增 RWD 樣式 */
 @media (max-width: 768px) {
     .project-feature {
@@ -484,9 +618,29 @@ section.content-section {
     margin-left: auto;
     margin-right: auto;
     line-height: 1.8;
+    text-align: left; /* 【新增】讓段落內的文字靠左對齊 */
 }
 .team-profile:not(:last-child) {
     border-bottom: 1px solid #e0e0e0;
+}
+/* 新增的容器樣式 */
+.team-profile-header {
+    display: flex;            /* 使用 Flexbox 讓內部元素並排 */
+    justify-content: center;  /* 將姓名和職稱作為一個整體置中 */
+    align-items: baseline;    /* 讓不同大小文字的底部對齊，看起來更協調 */
+    gap: 15px;                /* 在姓名和職稱之間增加 15px 的間距 */
+    flex-wrap: wrap;          /* 在螢幕過窄時允許換行 */
+}
+
+/* 調整 h3 和 title 的邊距，避免多餘的空白 */
+.team-profile-header h3,
+.team-profile-header .title {
+    margin: 0;
+}
+
+/* 稍微調整職稱的樣式 */
+.team-profile-header .title {
+    margin-bottom: 0; /* 移除原本的 margin-bottom */
 }
 /* 響應式調整 */
 @media (max-width: 768px) {
