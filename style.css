@@ -115,6 +115,8 @@ section.content-section {
     margin-top: 30px;
     flex: 1;
     min-width: 0;
+    /* --- 新增以下兩行，讓欄位內的項目置中 --- */
+    justify-content: center;
 }
 
 
@@ -793,7 +795,7 @@ section.content-section {
 /* 6.3 手機版 */
 @media (max-width: 768px) {
     body { padding-top: 70px; }
-    .container { padding: 0 20px; }
+    .container { padding: 0 30px; }
     section.content-section { padding: 80px 0; }
 
     /* Header RWD */
@@ -862,6 +864,10 @@ section.content-section {
 
     /* 聯絡頁 RWD */
     .floating-label-form .form-grid {
+        grid-template-columns: 1fr;
+    }
+    /* 【新增這段】讓 Bridge Maintenance 區塊在手機上變為單欄 */
+    .maintenance-grid {
         grid-template-columns: 1fr;
     }
 }
