@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services | SEFBO Construction</title>
     <meta name="description" content="探索 SEFBO 提供的全方位服務，從橋樑設計、施工規劃、到長期的結構檢測與維護，我們為您的工程專案提供完整的解決方案。">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -31,66 +34,147 @@
             </a>
     </section>
 
-        <section id="service" class="container content-section">
+        <section id="service" class="container content-section fade-in-up">
+            <div class="service-feature-content">
+                    <h3>Scope of Service</h3>
             <div class="service-feature-section">
                 <div class="service-feature-image">
                     <img src="photos/service_3.avif" alt="Scope of Service Image">
                 </div>
-                <div class="service-feature-content">
-                    <h2>Scope of Service</h2>
+                
                     <div class="service-scope-grid">
                         <ul>
-                            <li>Pipeline bridge design, construction, and maintenance</li>
+                            <li>Pipeline bridge design, construction, testing, strengthening and maintenance</li>
                             <li>Prestressed concrete structure design and construction</li>
                             <li>Prestressed steel structure design and construction</li>
                             <li>Structural reinforcement and reconstruction</li>
                             <li>Membrane structure design and construction</li>
                             <li>Cable net curtain wall design and construction</li>
+                            <li>Prestressed bridge construction and maintenance</li>
                             <li>Construction monitoring and health surveillance</li>
-                            <li>Complex structure design consulting</li>
+                            <li>Structure lifting, uninstalling and slipping technology</li>
+                            <li>Complex structure design consulting and construction</li>
+                            <li>Prestressed related products</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="container content-section">
-            <div class="service-feature-section reverse">
-                <div class="service-feature-image">
-                    <img src="photos/service_2.avif" alt="Construction Planning Image">
+        <section class="container content-section fade-in-up">
+            <!-- 重新設計的介紹區塊 -->
+            <div class="service-intro-block">
+                <div class="service-intro-content">
+                    <h3>Bridge Maintenance</h3>
                 </div>
-                <div class="service-feature-content">
-                    <h2>Construction Planning & Solutions</h2>
+            </div>
+            <!-- 重新設計的四宮格卡片 -->
+            <div class="maintenance-grid">
+                <!-- 項目 1: Cables & Fittings -->
+                <div class="maintenance-item">
+                    <div class="maintenance-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7"></path><path d="M12 5V2"></path></svg>
+                    </div>
+                    <div class="maintenance-item-content">
+                        <h4>Cables & Fittings</h4>
+                        <p>Carefully cleaning and applying a new Zinc coating to the cable system, or installing a complete new cable system.</p>
+                    </div>
+                </div>
+
+                <!-- 項目 2: Cable Tensioning -->
+                <div class="maintenance-item">
+                    <div class="maintenance-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"></path><path d="M4 18h16"></path><path d="M4 6h16"></path></svg>
+                    </div>
+                    <div class="maintenance-item-content">
+                        <h4>Cable Tensioning</h4>
+                        <p>The structural integrity of a cable suspension bridge relies heavily on a properly balanced cable system. SEFBO has the equipment and skilled personnel to keep your cable system balanced and tensioned.</p>
+                    </div>
+                </div>
+
+                <!-- 項目 3: Structural Repairs -->
+                <div class="maintenance-item">
+                    <div class="maintenance-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    </div>
+                    <div class="maintenance-item-content">
+                        <h4>Structural Repairs</h4>
+                        <p>Replacing bolts, building up rivet heads, replacing a brace, beam, pin, or a major structural section; our skilled crews can handle it.</p>
+                    </div>
+                </div>
+
+                <!-- 項目 4: Foundation Repairs -->
+                <div class="maintenance-item">
+                    <div class="maintenance-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                    </div>
+                    <div class="maintenance-item-content">
+                        <h4>Foundation Repairs</h4>
+                        <p>Filling small hairline cracks, sealing foundations to prevent water absorption, or major repairs to concrete anchor and tower foundations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+
+        <section class="container content-section fade-in-up">
+                <div class="service-intro-block">
+                    <div class="service-intro-content">
+                     <h3>Construction Planning</h3>   
+                </div>
+            </div>
+                                    
+
+                <div class="service-feature-section" style="display: flex; align-items: stretch; gap: 60px;">
+                
+                    <div class="service-feature-content" style="flex: 1;">
+                        <div class="planning-faq">
+                            <div class="faq-item">
+                                <h4>Need a new bridge?</h4>
+                                <p>We can build any size bridge anywhere in the world. We furnish all materials except the pipeline and install your new crossing, including pulling your pipeline onto the crossing and securing it for your welders to make the tie in.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Bank too close to tower?</h4>
+                                <p>We can install a new tower well back from the bank and solve this problem at a very reasonable cost.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Main cables rusty and/or going into the ground.</h4>
+                                <p>SEFBO can install new anchors and main cables to secure your crossing against failure.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Need a short crossing? (Up to 240')</h4>
+                                <p>We can furnish a truss type crossing with or without a walkway to support your pipeline safely on polyurethane rollers.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>New construction options:</h4>
+                                <p>If cost is an issue ask about our long term lease option? SEFBO can furnish the materials and on site pipeline bridge experts to assist your crew in the proper completion.</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="service-feature-image">
+                        <img src="photos/service_1.avif" alt="Construction planning site view">
+                        <div class="image-extra-content">
+                            <h4>Key Focus Areas</h4>
+                            <ul>
+                                <li>✓ Structural Integrity</li>
+                                <li>✓ Safety Compliance</li>
+                                <li>✓ Project Timeline</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <div class="about-summary-cta">
                     <a href="contact.html" class="button">Get a Consultation</a>
                 </div>
-            </div>
-        </section>
-        
-        <section class="container content-section">
-            <div class="service-feature-section">
-                <div class="service-feature-image">
-                    <img src="photos/service_1.avif" alt="Bridge Maintenance Image">
-                </div>
-                <div class="service-feature-content">
-                    <h2>Bridge Maintenance</h2>
-                    <p>A proactive inspection and maintenance program is the prime factor in controlling costs and ensuring the long-term integrity of your pipeline system.</p>
-                     <div class="maintenance-list">
-                        <p><strong>Key services include:</strong></p>
-                        <ul>
-                            <li>Cables & Fittings Inspection and Recoating</li>
-                            <li>Cable System Tensioning and Balancing</li>
-                            <li>Structural & Foundation Repairs</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-    </main>
+            </main>
 
-    <div id="footer-placeholder"></div>
+            <div id="footer-placeholder"></div>
 
-    <script src="main.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+            <script src="main.js"></script>
 
-</body>
-</html>
+        </body>
+        </html>

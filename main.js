@@ -1,164 +1,88 @@
-// --- 【更新】通用漸進式出現 (Fade-in on Scroll) 動畫 ---
-// 這個版本會同時作用於 people.html 和 projects.html
-const animatedItems = document.querySelectorAll('.team-member, .project-feature');
+document.addEventListener("DOMContentLoaded", function() {
 
-// 如果頁面上沒有需要動畫的元素，就提前結束，避免錯誤
-if (animatedItems.length > 0) {
-    const observerOptions = {
-        root: null, // 觀察整個視窗
-        rootMargin: '0px',
-        threshold: 0.1 // 當元素有 10% 進入視窗時觸發
-    };
+    // --- 【1】動態載入 Header 和 Footer ---
+    function loadHTML(elementId, filePath, callback) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            fetch(filePath)
+                .then(response => response.ok ? response.text() : Promise.reject('File not found'))
+                .then(data => {
+                    element.innerHTML = data;
+                    if (callback) callback();
+                })
+                .catch(error => console.error(`Error loading ${filePath}:`, error));
+        }
+    }
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // 為進入畫面的元素加上 'is-visible' class 來觸發動畫
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // 元素已出現，停止觀察以提升效能
+    loadHTML('header-placeholder', 'header.html', initializeHeaderFeatures);
+    loadHTML('footer-placeholder', 'footer.html');
+
+    // --- 【2】初始化所有 Header 相關的功能 ---
+    function initializeHeaderFeatures() {
+        const navLinks = document.querySelectorAll('#main-nav a');
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active-link');
             }
         });
-    }, observerOptions);
 
-    animatedItems.forEach(item => {
-        observer.observe(item);
-    });
-}
-
-
-document.addEventListener("DOMContentLoaded", function() {
-
-    const headerPlaceholder = document.getElementById('header-placeholder');
-    const footerPlaceholder = document.getElementById('footer-placeholder');
-
-    if (headerPlaceholder) {
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                headerPlaceholder.innerHTML = data;
-
-                // ---【新增】標示當前頁面連結的邏輯 ---
-                function highlightActiveLink() {
-                    const navLinks = document.querySelectorAll('#main-nav a');
-                    // 取得當前頁面的檔案名稱，例如 "contact.html"
-                    const currentPage = window.location.pathname.split('/').pop();
-
-                    navLinks.forEach(link => {
-                        const linkPage = link.getAttribute('href');
-
-                        // 如果連結的 href 與當前頁面檔案名稱相符，就加上 active-link class
-                        // 特別處理首頁 (當 currentPage 為空或 "index.html" 時)
-                        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
-                            link.classList.add('active-link');
-                        }
-                    });
-                }
-                highlightActiveLink();
-                // --- 新增邏輯結束 ---
-
-
-                // ---- 漢堡選單邏輯 ----
-                const menuToggle = document.getElementById('menu-toggle');
-                const mainNav = document.getElementById('main-nav');
-                if (menuToggle && mainNav) {
-                    menuToggle.addEventListener('click', function() {
-                        mainNav.classList.toggle('is-open');
-                        menuToggle.classList.toggle('is-active'); 
-                    });
-                }
-
-                // ---- 搜尋視窗邏輯 ----
-                const searchToggle = document.getElementById('search-toggle');
-                const searchOverlay = document.getElementById('search-overlay');
-                const searchClose = document.getElementById('search-close');
-                const searchInput = document.getElementById('search-input');
-                const searchResultsContainer = document.getElementById('search-results');
-
-                if (searchToggle && searchOverlay && searchClose) {
-                    searchToggle.addEventListener('click', function() {
-                        searchOverlay.classList.add('is-open');
-                        searchInput.focus();
-                    });
-
-                    searchClose.addEventListener('click', function() {
-                        searchOverlay.classList.remove('is-open');
-});
-                }
-
-                // ---- 搜尋功能核心邏輯 ----
-                let searchData = [];
-                fetch('search-index.json')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Search index not found');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        searchData = data;
-                        if (searchInput) {
-                            searchInput.addEventListener('input', function(e) {
-                                const query = e.target.value.toLowerCase().trim();
-                                searchResultsContainer.innerHTML = '';
-                                if (query.length < 2) return;
-
-                                const results = searchData.filter(item => 
-                                    item.title.toLowerCase().includes(query) || 
-                                    item.content.toLowerCase().includes(query)
-                                );
-
-                                if (results.length > 0) {
-                                    results.forEach(result => {
-                                        const resultElement = document.createElement('div');
-                                        resultElement.className = 'result-item';
-                                        const snippet = result.content.substring(0, 120) + '...';
-                                        resultElement.innerHTML = `
-                                            <a href="${result.url}">
-                                                <h4>${result.title}</h4>
-                                                <p>${snippet}</p>
-                                            </a>`;
-                                        searchResultsContainer.appendChild(resultElement);
-                                    });
-                                } else {
-                                    searchResultsContainer.innerHTML = '<div class="no-results">No results found.</div>';
-                                }
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        console.warn(error.message);
-                    });
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('is-open');
+                menuToggle.classList.toggle('is-active');
             });
+        }
     }
 
-    if (footerPlaceholder) {
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                footerPlaceholder.innerHTML = data;
+    // --- 【3】初始化頁面滾動動畫 ---
+    const animatedItems = document.querySelectorAll('.project-feature, .team-profile, .fade-in-up');    if (animatedItems.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
             });
+        }, { threshold: 0.1 });
+        animatedItems.forEach(item => observer.observe(item));
     }
-});
 
-// --- 【新增】平滑滾動到指定區塊的功能 ---
-document.addEventListener("DOMContentLoaded", function() {
+    // --- 【4】初始化平滑滾動功能 ---
     const scrollLinks = document.querySelectorAll('.scroll-down-prompt');
-
     scrollLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // 1. 防止瞬間跳轉的預設行為
             e.preventDefault();
-
-            // 2. 取得目標區塊的 ID (例如 "#engineering")
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-
-            // 3. 如果目標區塊存在，就平滑滾動到那裡
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                targetElement.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
-});
+
+    // --- 【5】【關鍵】初始化所有 Swiper 輪播 ---
+
+    // 初始化 Hero Slider
+    // 檢查頁面上是否有 .hero-slider 元素，避免在沒有該輪播的頁面報錯
+    if (document.querySelector('.hero-slider')) {
+        const heroSlider = new Swiper('.hero-slider', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    }
+
+}); // DOMContentLoaded 事件監聽器結束
