@@ -84,5 +84,5 @@ document.addEventListener("DOMContentLoaded", function() {
             },
         });
     }
-
+  
 }); // DOMContentLoaded 事件監聽器結束
