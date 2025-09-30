@@ -485,21 +485,32 @@ section.content-section {
 .image-slider {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 16 / 9; /* <--- 【新增】設定長寬比為 16:9 (寬螢幕) */
-    /* 您也可以改成 4 / 3 (標準) 或 1 / 1 (正方形) */
-    border-radius: 8px; /* 建議加上圓角，裁切後更好看 */
+    border-radius: 8px;
+
+    /* ▼▼▼ 【本次修改】 ▼▼▼ */
+    /* 移除 aspect-ratio，改用 padding-top 技巧，相容性更好 */
+    height: 0;
+    padding-top: 28.77%; /* 關鍵！用 padding-top 撐開一個 16:9 的空間 (9 / 16 = 0.5625) */
+    /* ▲▲▲ 【修改結束】 ▲▲▲ */
 }
 
 /* 2. 輪播中的圖片 - 讓它填滿容器 */
 .image-slider img {
-    display: none;
+    /* ▼▼▼ 【本次修改】 ▼▼▼ */
+    /* 使用絕對定位來填滿上面用 padding-top 撐開的父容器 */
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;       /* <--- 【新增】高度也設為 100% */
-    object-fit: cover;  /* <--- 【新增】關鍵！讓圖片填滿容器且不變形 */
+    height: 100%;       
+    object-fit: cover;  /* 關鍵！讓圖片填滿容器且不變形，多餘部分會被裁切 */
+    /* ▲▲▲ 【修改結束】 ▲▲▲ */
+
+    display: none; /* 維持 JS 輪播邏輯需要 */
     vertical-align: middle;
     transition: transform 0.4s ease-in-out;
-
 }
+
 .image-slider:hover img {
     transform: scale(1);
 }
