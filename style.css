@@ -467,6 +467,8 @@ section.content-section {
     object-fit: cover; /* 保持圖片比例，多餘部分會被裁剪 */
     border-radius: 8px;
     transition: transform 0.4s ease-in-out;
+    aspect-ratio: 16 / 9; /* <--- 【新增】設定長寬比為 16:9 (寬螢幕) */
+
 }
 
 .project-feature-image:hover img {
@@ -475,6 +477,68 @@ section.content-section {
 /* --- 專案頁 - 隱藏多餘的專案 --- */
 .hidden-project {
     display: none; /* 預設隱藏 */
+}
+
+/* --- 專案頁 - 圖片輪播 (Image Slider) --- */
+
+/* 1. 輪播容器 - 這是關鍵！ */
+.image-slider {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9; /* <--- 【新增】設定長寬比為 16:9 (寬螢幕) */
+    /* 您也可以改成 4 / 3 (標準) 或 1 / 1 (正方形) */
+    border-radius: 8px; /* 建議加上圓角，裁切後更好看 */
+}
+
+/* 2. 輪播中的圖片 - 讓它填滿容器 */
+.image-slider img {
+    display: none;
+    width: 100%;
+    height: 100%;       /* <--- 【新增】高度也設為 100% */
+    object-fit: cover;  /* <--- 【新增】關鍵！讓圖片填滿容器且不變形 */
+    vertical-align: middle;
+    transition: transform 0.4s ease-in-out;
+
+}
+.image-slider:hover img {
+    transform: scale(1);
+}
+
+/* 只顯示當前 active 的圖片 */
+.image-slider img.active {
+    display: block;
+}
+
+/* 3. 左右箭頭按鈕 */
+.slider-btn {
+    position: absolute;  /* 絕對定位，疊在圖片上 */
+    top: 50%;            /* 垂直置中 */
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4); /* 半透明黑色背景 */
+    color: white;        /* 箭頭顏色 */
+    border: none;
+    padding: 10px;
+    border-radius: 50%;  /* 圓形按鈕 */
+    cursor: pointer;     /* 滑鼠移上去時顯示手形 */
+    z-index: 10;         /* 確保按鈕在圖片之上 */
+    width: 44px;         /* 固定寬高 */
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s; /* 平滑的 hover 效果 */
+}
+
+.slider-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.prev-btn {
+    left: 15px; /* 左邊按鈕靠左 */
+}
+
+.next-btn {
+    right: 15px; /* 右邊按鈕靠右 */
 }
 
 
