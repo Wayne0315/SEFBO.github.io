@@ -949,5 +949,29 @@ section.content-section {
     .maintenance-grid {
         grid-template-columns: 1fr;
     }
+
+    /* 專案頁 RWD */
+    .separator {
+        margin: 60px auto; /* 減少分隔線的垂直間距 */
+    }
+
+    .project-feature {
+        gap: 20px; /* 稍微減少圖片與文字堆疊時的間距 */
+    }
+    
+    .project-feature-content {
+        text-align: center; /* 讓文字內容置中 */
+    }
+    
+    .project-feature-content p {
+        margin-left: auto;  /* 讓 p 段落也能在置中的容器內正常顯示 */
+        margin-right: auto;
+    }
+    
+    .project-feature-content ul {
+        text-align: left;      /* 項目清單保持靠左，方便閱讀 */
+        display: inline-block; /* 讓 ul 區塊本身置中，但內部文字靠左 */
+        margin-top: 20px;
+    }
 }
 
