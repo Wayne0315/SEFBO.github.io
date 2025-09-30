@@ -896,6 +896,12 @@ section.content-section {
     /* Hero RWD */
     .page-hero-section { height: 60vh; min-height: 400px; }
     .scroll-down-prompt { display: none !important; }
+    .hero-content {
+        /* 增加左右內距，把文字往中間推 */
+        padding-left: 55px;
+        padding-right: 55px;
+        box-sizing: border-box; /* 確保 padding 不會讓容器超出螢幕寬度 */
+    }
 
     /* Footer RWD */
     .footer-grid {
