@@ -448,7 +448,7 @@ section.content-section {
 /* 4.2 專案頁 (Projects Page) */
 .project-feature {
     display: flex;
-    gap: 50px;
+    gap: 30px;
     align-items: center;
 }
 .project-feature-image, .project-feature-content {
@@ -460,12 +460,17 @@ section.content-section {
 .project-feature-image {
     overflow: hidden;
 }
+
 .project-feature-image img {
+    width: 100%; /* 寬度填滿容器 */
+    height: 100%; /* 高度填滿容器 */
+    object-fit: cover; /* 保持圖片比例，多餘部分會被裁剪 */
     border-radius: 8px;
     transition: transform 0.4s ease-in-out;
 }
+
 .project-feature-image:hover img {
-    transform: scale(1.05);
+    transform: scale(1);
 }
 /* --- 專案頁 - 隱藏多餘的專案 --- */
 .hidden-project {
