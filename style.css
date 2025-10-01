@@ -118,6 +118,10 @@ section.content-section {
     /* --- 新增以下兩行，讓欄位內的項目置中 --- */
     justify-content: center;
 }
+.column-image {
+    display: flex;           /* 關鍵：將此容器設為 Flex 佈局 */
+    justify-content: center; /* 關鍵：讓容器內的項目(圖片)水平置中 */
+}
 
 
 /* --- 3. 網站區塊 (Header, Footer, Hero) --- */
@@ -256,6 +260,9 @@ section.content-section {
 .footer-column .footer-logo {
     font-size: 1.5rem;
     font-weight: 900;
+}
+.footer-column .footer-logo {
+    color: var(--color-light); /* 或者直接寫 #ffffff */
 }
 .footer-column p {
     margin-bottom: 0;
