@@ -467,8 +467,6 @@ section.content-section {
     object-fit: cover; /* 保持圖片比例，多餘部分會被裁剪 */
     border-radius: 8px;
     transition: transform 0.4s ease-in-out;
-    aspect-ratio: 16 / 9; /* <--- 【新增】設定長寬比為 16:9 (寬螢幕) */
-
 }
 
 .project-feature-image:hover img {
@@ -486,33 +484,20 @@ section.content-section {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-
-    /* ▼▼▼ 【本次修改】 ▼▼▼ */
-    /* 移除 aspect-ratio，改用 padding-top 技巧，相容性更好 */
     height: 0;
-    padding-top: 28.77%; /* 關鍵！用 padding-top 撐開一個 16:9 的空間 (9 / 16 = 0.5625) */
-    /* ▲▲▲ 【修改結束】 ▲▲▲ */
+    padding-top: 28.77%; /* 預設 16:9 比例 */
 }
 
 /* 2. 輪播中的圖片 - 讓它填滿容器 */
 .image-slider img {
-    /* ▼▼▼ 【本次修改】 ▼▼▼ */
-    /* 使用絕對定位來填滿上面用 padding-top 撐開的父容器 */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;       
-    object-fit: cover;  /* 關鍵！讓圖片填滿容器且不變形，多餘部分會被裁切 */
-    /* ▲▲▲ 【修改結束】 ▲▲▲ */
-
-    display: none; /* 維持 JS 輪播邏輯需要 */
+    object-fit: cover;
+    display: none;
     vertical-align: middle;
-    transition: transform 0.4s ease-in-out;
-}
-
-.image-slider:hover img {
-    transform: scale(1);
 }
 
 /* 只顯示當前 active 的圖片 */
@@ -522,22 +507,22 @@ section.content-section {
 
 /* 3. 左右箭頭按鈕 */
 .slider-btn {
-    position: absolute;  /* 絕對定位，疊在圖片上 */
-    top: 50%;            /* 垂直置中 */
+    position: absolute;
+    top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.4); /* 半透明黑色背景 */
-    color: white;        /* 箭頭顏色 */
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
     border: none;
     padding: 10px;
-    border-radius: 50%;  /* 圓形按鈕 */
-    cursor: pointer;     /* 滑鼠移上去時顯示手形 */
-    z-index: 10;         /* 確保按鈕在圖片之上 */
-    width: 44px;         /* 固定寬高 */
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    width: 44px;
     height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s; /* 平滑的 hover 效果 */
+    transition: background-color 0.2s;
 }
 
 .slider-btn:hover {
@@ -545,11 +530,11 @@ section.content-section {
 }
 
 .prev-btn {
-    left: 15px; /* 左邊按鈕靠左 */
+    left: 15px;
 }
 
 .next-btn {
-    right: 15px; /* 右邊按鈕靠右 */
+    right: 15px;
 }
 
 
@@ -561,7 +546,7 @@ section.content-section {
 }
 .service-feature-section {
     display: flex;
-    align-items: stretch; /* 【修改這裡】從 center 改為 stretch */
+    align-items: stretch;
     gap: 60px;
 }
 .service-feature-image {
@@ -583,7 +568,7 @@ section.content-section {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 20px 60px;
     margin-top: 40px;
-    text-align: left; /* <-- 加入這一行即可 */
+    text-align: left;
 
 }
 .service-scope-grid ul li {
@@ -592,37 +577,30 @@ section.content-section {
     border-bottom: 1px solid #eee;
 }
 
-/* ============================================= */
-/* 【以下為本次新增的樣式】 */
-/* ============================================= */
 .planning-faq {
     margin-top: 40px;
-    text-align: left; /* FAQ 內容靠左對齊，更易閱讀 */
+    text-align: left;
 }
 .faq-item:not(:last-child) {
-    margin-bottom: 30px; /* 增加每個問答項目之間的間距 */
+    margin-bottom: 30px;
 }
 .faq-item h4 {
     font-size: 1.2rem;
     font-weight: 700;
-    text-transform: none; /* 取消大寫，使其看起來像一個問題 */
+    text-transform: none;
     letter-spacing: 0;
     margin-bottom: 8px;
 }
 .faq-item p {
-    color: #555; /* 使用稍淺的顏色來區分回答內容 */
-    max-width: none; /* 取消最大寬度限制，使其在容器內自由排列 */
+    color: #555;
+    max-width: none;
     font-size: 1rem;
     margin-bottom: 0;
 }
-/* ============================================= */
-/* 【新增樣式結束】 */
-/* ============================================= */
 
-/* 【新增】詳細橋樑維護服務網格 */
 .maintenance-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 預設為兩欄 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     margin-top: 40px;
 }
@@ -655,14 +633,14 @@ section.content-section {
     font-size: 1rem;
 }
 .image-extra-content {
-    margin-top: 20px; /* 與圖片間的距離 */
+    margin-top: 20px;
     padding: 20px;
     background-color: var(--color-grey);
     border-radius: 8px;
 }
 .image-extra-content h4 {
     margin-bottom: 15px;
-    text-transform: none; /* 取消大寫 */
+    text-transform: none;
 }
 .image-extra-content ul {
     text-align: left;
@@ -684,15 +662,12 @@ section.content-section {
 .analysis-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
 .analysis-item h3 { margin-top: 0 }
 
-/* 2. 將 Engineering 和 Inspection 區塊的列表置中 */
 .feature-list {
     text-align: left;
 }
-/* 3. 將 Seismic Analysis 區塊的每個項目內容置中 */
 .analysis-item {
     text-align: left;
 }
-/* 4. 確保置中的長段落不會延伸過寬，保持可讀性 */
 .analysis-item p {
     max-width: 65ch;
     margin-left: auto;
@@ -700,9 +675,9 @@ section.content-section {
 }
 .expertise-hero-image {
     width: 100%;
-    border-radius: 8px; /* 圓角效果 */
-    overflow: hidden;   /* 確保圖片不會超出圓角範圍 */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* 加上陰影 */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 
@@ -749,28 +724,25 @@ section.content-section {
     text-align: center;
     margin-bottom: 60px;
 }
-/* ▼▼▼ 從這裡開始替換 ▼▼▼ */
 
 .floating-label-form .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px 35px; /* 調整垂直和水平間距 */
+    gap: 25px 35px;
 }
 
 .floating-label-form .form-group {
-    /* 移除 position: relative; 因為 label 不再需要絕對定位 */
-    margin-bottom: 0; /* 垂直間距由 form-grid 的 gap 控制 */
+    margin-bottom: 0;
 }
 
 .floating-label-form .form-group.full-width {
     grid-column: 1 / -1;
 }
 
-/* 【關鍵】新的 Label 樣式 */
 .floating-label-form label {
-    display: block; /* 讓 label 成為一個區塊，佔據一行 */
+    display: block;
     font-weight: 700;
-    margin-bottom: 8px; /* label 和 input 之間的間距 */
+    margin-bottom: 8px;
     color: var(--color-dark);
     font-size: 0.9rem;
 }
@@ -779,17 +751,16 @@ section.content-section {
 .floating-label-form textarea,
 .floating-label-form select {
     width: 100%;
-    padding: 12px 15px; /* 調整為上下一致的 padding */
-    border: 1px solid #ccc; /* 加上邊框，讓輸入框更清晰 */
+    padding: 12px 15px;
+    border: 1px solid #ccc;
     background-color: #f9f9f9;
     font-size: 1rem;
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
-    border-radius: 6px; /* 為輸入框增加圓角 */
-    box-sizing: border-box; /* 確保 padding 不會撐大寬度 */
+    border-radius: 6px;
+    box-sizing: border-box;
 }
 
-/* 輸入框獲得焦點時的樣式 */
 .floating-label-form input:focus,
 .floating-label-form textarea:focus,
 .floating-label-form select:focus {
@@ -802,9 +773,8 @@ section.content-section {
     resize: vertical; 
 }
 
-/* 處理驗證訊息和字數統計 */
 .floating-label-form .validation-message {
-    display: block; /* 或者 inline-block */
+    display: block;
     margin-top: 5px;
     font-size: 0.85rem;
     color: #888;
@@ -824,12 +794,10 @@ section.content-section {
 }
 
 /* --- 5. 動畫效果 (Animations) --- */
-/* --- 5. 動畫效果 (Animations) --- */
 
-/* 【新增】通用的淡入+上滑動畫樣式 */
 .fade-in-up {
     opacity: 0;
-    transform: translateY(40px); /* 從下方 40px 的位置開始 */
+    transform: translateY(40px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
@@ -838,8 +806,6 @@ section.content-section {
     transform: translateY(0);
 }
 
-
-/* 您原本的樣式可以保留，以防萬一 */
 .team-profile, .project-feature {
     opacity: 0;
     transform: translateY(20px);
@@ -867,7 +833,6 @@ section.content-section {
         max-width: 800px;
     }
 
-    /* 【新增】桌面版 Header 置中修正 */
     .main-nav {
         position: absolute;
         left: 50%;
@@ -908,10 +873,9 @@ section.content-section {
     .page-hero-section { height: 60vh; min-height: 400px; }
     .scroll-down-prompt { display: none !important; }
     .hero-content {
-        /* 增加左右內距，把文字往中間推 */
         padding-left: 55px;
         padding-right: 55px;
-        box-sizing: border-box; /* 確保 padding 不會讓容器超出螢幕寬度 */
+        box-sizing: border-box;
     }
 
     /* Footer RWD */
@@ -956,33 +920,39 @@ section.content-section {
     .floating-label-form .form-grid {
         grid-template-columns: 1fr;
     }
-    /* 【新增這段】讓 Bridge Maintenance 區塊在手機上變為單欄 */
     .maintenance-grid {
         grid-template-columns: 1fr;
     }
 
     /* 專案頁 RWD */
     .separator {
-        margin: 60px auto; /* 減少分隔線的垂直間距 */
+        margin: 60px auto;
     }
 
     .project-feature {
-        gap: 20px; /* 稍微減少圖片與文字堆疊時的間距 */
+        gap: 20px;
     }
     
     .project-feature-content {
-        text-align: center; /* 讓文字內容置中 */
+        text-align: center;
     }
     
     .project-feature-content p {
-        margin-left: auto;  /* 讓 p 段落也能在置中的容器內正常顯示 */
+        margin-left: auto;
         margin-right: auto;
     }
     
     .project-feature-content ul {
-        text-align: left;      /* 項目清單保持靠左，方便閱讀 */
-        display: inline-block; /* 讓 ul 區塊本身置中，但內部文字靠左 */
+        text-align: left;
+        display: inline-block;
         margin-top: 20px;
     }
-}
+    .project-feature-image {
+        width: 100%; /* 關鍵：強制設定寬度 */
+        flex-shrink: 0; /* 確保在 Flex 佈局中不會被縮小 */
+    }
 
+    .image-slider {
+        padding-top: 56.25%; /* 設定為常見的 16:9 比例 */
+    }
+}
