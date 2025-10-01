@@ -465,7 +465,11 @@ section.content-section {
     flex-direction: row-reverse;
 }
 .project-feature-image {
-    overflow: hidden;
+    flex: 1; /* 圖片欄位佔 2 個單位 */
+}
+
+.project-feature-content {
+    flex: 2; /* 文字欄位佔 3 個單位，會比圖片寬 */
 }
 
 .project-feature-image img {
@@ -904,6 +908,8 @@ section.content-section {
     .service-feature-section,
     .project-feature {
         flex-direction: column;
+        align-items: center; /* 【新增】讓垂直排列的項目水平置中 */
+
     }
     .two-column-layout.reverse-on-mobile {
         flex-direction: column-reverse;
@@ -955,7 +961,7 @@ section.content-section {
         margin-top: 20px;
     }
     .project-feature-image {
-        width: 100%; /* 關鍵：強制設定寬度 */
+        width: 75%; /* 關鍵：強制設定寬度 */
         flex-shrink: 0; /* 確保在 Flex 佈局中不會被縮小 */
     }
 
