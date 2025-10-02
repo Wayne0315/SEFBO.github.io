@@ -452,102 +452,110 @@ section.content-section {
 .trust-section .button { margin-top: 20px; }
 
 
-/* 4.2 專案頁 (Projects Page) */
-.project-feature {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-}
-.project-feature-image, .project-feature-content {
-    flex: 1;
-}
-.project-feature:nth-of-type(even) {
-    flex-direction: row-reverse;
-}
-.project-feature-image {
-    flex: 1; /* 圖片欄位佔 2 個單位 */
+/* --- 4.2 專案頁 (Projects Page) - 新的網格卡片佈局 --- */
+
+.project-grid {
+    display: grid;
+    /* 關鍵：建立一個三欄、欄間距相等的網格 */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px; /* 卡片之間的間距 */
 }
 
-.project-feature-content {
-    flex: 2; /* 文字欄位佔 3 個單位，會比圖片寬 */
-}
-
-.project-feature-image img {
-    width: 100%; /* 寬度填滿容器 */
-    height: 100%; /* 高度填滿容器 */
-    object-fit: cover; /* 保持圖片比例，多餘部分會被裁剪 */
+.project-card {
+    background-color: #ffffff;
     border-radius: 8px;
-    transition: transform 0.4s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden; /* 確保圖片圓角生效 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* 讓卡片內容垂直排列 */
+    flex-direction: column;
 }
 
-.project-feature-image:hover img {
-    transform: scale(1);
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
+
+.project-card-image {
+    width: 100%;
+    height: 220px; /* 給圖片一個固定的高度，讓網格對齊 */
+    overflow: hidden;
+}
+
+.project-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 讓圖片填滿容器且不變形 */
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-card-image img {
+    transform: scale(1.05); /* 滑鼠移上去時圖片輕微放大 */
+}
+
+.project-card-content {
+    padding: 25px;
+    flex-grow: 1; /* 讓內容區塊填滿剩餘空間 */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card-content .project-category {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #555;
+}
+
+/* --- 修改這一段 --- */
+.project-card-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 10px;
+    margin-bottom: 15px; /* 【新增】給下方按鈕留出空間 */
+    color: #333;
+    flex-grow: 1;
+
+    /* 【移除】舊的文字截斷規則，我們將改用 class 控制 */
+    /* display: -webkit-box; */
+    /* -webkit-line-clamp: 3; */
+    /* -webkit-box-orient: vertical;   */
+    /* overflow: hidden; */
+}
+
+/* --- 新增這兩個 class --- */
+
+/* 用於截斷文字的輔助 class */
+.project-card-content p.is-truncated {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 限制 3 行 */
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+/* 「閱讀更多」按鈕的樣式 */
+.read-more-btn {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-family: var(--font-primary);
+    padding: 5px 0;
+    cursor: pointer;
+    margin-top: auto; /* 【關鍵】將按鈕推到卡片最底部 */
+    align-self: flex-start; /* 讓按鈕靠左 */
+    font-size: 0.9rem;
+}
+
+/* 移除舊的分隔線樣式 (如果還有的話) */
+.separator {
+    display: none;
+}
+
+
 /* --- 專案頁 - 隱藏多餘的專案 --- */
 .hidden-project {
     display: none; /* 預設隱藏 */
 }
-
-/* --- 專案頁 - 圖片輪播 (Image Slider) --- */
-
-/* 1. 輪播容器 - 這是關鍵！ */
-.image-slider {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    height: 0;
-    padding-top: 28.77%; /* 預設 16:9 比例 */
-}
-
-/* 2. 輪播中的圖片 - 讓它填滿容器 */
-.image-slider img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;       
-    object-fit: cover;
-    display: none;
-    vertical-align: middle;
-}
-
-/* 只顯示當前 active 的圖片 */
-.image-slider img.active {
-    display: block;
-}
-
-/* 3. 左右箭頭按鈕 */
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s;
-}
-
-.slider-btn:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-.prev-btn {
-    left: 15px;
-}
-
-.next-btn {
-    right: 15px;
-}
-
 
 /* 4.3 服務頁 (Services Page) */
 
@@ -967,5 +975,17 @@ section.content-section {
 
     .image-slider {
         padding-top: 56.25%; /* 設定為常見的 16:9 比例 */
+    }
+    .project-grid {
+    /* 在手機上變為單欄顯示 */
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+}
+
+/* 平板：兩欄 */
+@media (max-width: 992px) {
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
