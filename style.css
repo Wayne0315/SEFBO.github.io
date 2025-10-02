@@ -511,25 +511,28 @@ section.content-section {
     font-size: 1rem;
     line-height: 1.6;
     margin-top: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* 【新增】給下方按鈕留出空間 */
     color: #333;
     flex-grow: 1;
 
-    /* 【加回】預設就截斷文字，強制所有卡片p標籤高度一致 */
+    /* 【移除】舊的文字截斷規則，我們將改用 class 控制 */
+    /* display: -webkit-box; */
+    /* -webkit-line-clamp: 3; */
+    /* -webkit-box-orient: vertical;   */
+    /* overflow: hidden; */
+}
+
+/* --- 新增這兩個 class --- */
+
+/* 用於截斷文字的輔助 class */
+.project-card-content p.is-truncated {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 3; /* 限制 3 行 */
     -webkit-box-orient: vertical;  
     overflow: hidden;
 }
 
-/* 【新增】這個 class 用來展開文字 */
-.project-card-content p.is-expanded {
-    display: block; /* 或 display: initial; */
-    -webkit-line-clamp: unset; /* 取消行數限制 */
-    overflow: visible;
-}
-
-/* 「閱讀更多」按鈕的樣式 (這段不用動) */
+/* 「閱讀更多」按鈕的樣式 */
 .read-more-btn {
     background: none;
     border: none;
@@ -538,8 +541,8 @@ section.content-section {
     font-family: var(--font-primary);
     padding: 5px 0;
     cursor: pointer;
-    margin-top: auto;
-    align-self: flex-start;
+    margin-top: auto; /* 【關鍵】將按鈕推到卡片最底部 */
+    align-self: flex-start; /* 讓按鈕靠左 */
     font-size: 0.9rem;
 }
 
@@ -980,9 +983,3 @@ section.content-section {
 }
 }
 
-/* 平板：兩欄 */
-@media (max-width: 992px) {
-    .project-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
