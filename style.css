@@ -713,11 +713,9 @@ section.content-section {
     border-bottom: 1px solid #e0e0e0;
 }
 .team-profile-header {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 15px;
-    flex-wrap: wrap;
+    flex-direction: column;  /* 關鍵：將排列方向改為垂直 */
+    align-items: center;     /* 讓垂直排列的項目水平置中 */
+    gap: 5px;                /* 縮小垂直間距，讓它們更緊湊 */
 }
 .team-profile-header h3,
 .team-profile-header .title {
@@ -900,8 +898,9 @@ section.content-section {
     /* Footer RWD */
     .footer-grid {
         grid-template-columns: 1fr;
-        text-align: center;
-        gap: 40px
+        text-align: left;
+        gap: 20px;
+        margin-top:3px
     }
 
     .hide-on-mobile {
