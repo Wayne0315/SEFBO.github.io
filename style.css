@@ -977,9 +977,16 @@ section.content-section {
         padding-top: 56.25%; /* 設定為常見的 16:9 比例 */
     }
     .project-grid {
-    /* 在手機上變為單欄顯示 */
-    grid-template-columns: 1fr;
-    gap: 30px;
-}
+        /* 在手機上變為單欄顯示 */
+        grid-template-columns: 1fr;
+        gap: 30px;
+        justify-items: center; /* 【新增】讓網格內的項目(卡片)水平置中 */
+    }
+
+    /* 2.【新增這段】設定卡片在手機上的寬度 */
+    .project-card {
+        width: 90%; /* 設定卡片寬度為容器的 90% */
+        max-width: 400px; /*【建議】新增最大寬度，避免在較大手機上過寬 */
+    }
 }
 
