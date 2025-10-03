@@ -574,26 +574,13 @@ section.content-section {
 }
 
 .service-feature-image img {
-    width: 85%;
+    width: 100%;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 .service-feature-section.reverse {
     flex-direction: row-reverse;
     text-align: center;
-}
-.service-scope-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px 60px;
-    margin-top: 40px;
-    text-align: left;
-
-}
-.service-scope-grid ul li {
-    font-size: 1.1rem;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
 }
 
 .planning-faq {
@@ -713,9 +700,10 @@ section.content-section {
     border-bottom: 1px solid #e0e0e0;
 }
 .team-profile-header {
-    flex-direction: column;  /* 關鍵：將排列方向改為垂直 */
-    align-items: center;     /* 讓垂直排列的項目水平置中 */
-    gap: 5px;                /* 縮小垂直間距，讓它們更緊湊 */
+    display: flex;           /* 關鍵：啟用 Flexbox 佈局 */
+    flex-direction: column;  /* 將排列方向設為垂直 */
+    align-items: center;     /* 【真正】讓項目水平置中的屬性 */
+    gap: 5px;                /* 設定垂直間距 */
 }
 .team-profile-header h3,
 .team-profile-header .title {
