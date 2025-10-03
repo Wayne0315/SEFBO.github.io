@@ -478,7 +478,7 @@ section.content-section {
 
 .project-card-image {
     width: 100%;
-    height: 220px; /* 給圖片一個固定的高度，讓網格對齊 */
+    height: 190px; /* 給圖片一個固定的高度，讓網格對齊 */
     overflow: hidden;
 }
 
