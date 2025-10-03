@@ -455,10 +455,15 @@ section.content-section {
 /* --- 4.2 專案頁 (Projects Page) - 新的網格卡片佈局 --- */
 
 .project-grid {
+    /* 設定最大寬度為 1100px，小於外層 container 的寬度 */
+    max-width: 1100px; 
+    /* 透過 margin: auto 讓網格本身在容器內水平置中 */
+    margin-left: auto;
+    margin-right: auto;
+
     display: grid;
-    /* 關鍵：建立一個三欄、欄間距相等的網格 */
     grid-template-columns: repeat(3, 1fr); 
-    gap: 40px; /* 卡片之間的間距 */
+    gap: 50px;
 }
 
 .project-card {
@@ -569,8 +574,16 @@ section.content-section {
     gap: 60px;
 }
 .service-feature-image {
-    margin-top:50px;
-    flex: 1; min-width: 0;
+    margin-top: 50px;
+    flex: 0 1 30%; /* 原本是 flex: 1; */
+    min-width: 0;
+    /* 說明：
+       flex: 0 1 40%; 的意思是：
+       - flex-grow: 0 (不要放大)
+       - flex-shrink: 1 (空間不夠時可以縮小)
+       - flex-basis: 40% (基礎寬度為父容器的 40%)
+       您可以將 40% 這個值改成您喜歡的大小，例如 35% 會讓圖片更小。
+    */
 }
 
 .service-feature-image img {
