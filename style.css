@@ -570,20 +570,22 @@ section.content-section {
 }
 .service-feature-section {
     display: flex;
-    align-items: stretch;
+    /* 【修改】align-items: stretch -> align-items: center */
+    /* 讓項目在垂直方向上置中對齊 */
+    align-items: center; 
     gap: 60px;
 }
+/* 1. 設定圖片容器佔用 35% 的基礎寬度 */
 .service-feature-image {
-    margin-top: 50px;
-    flex: 0 1 30%; /* 原本是 flex: 1; */
+    margin-top: 40px;
+    flex: 0 1 30%; 
     min-width: 0;
-    /* 說明：
-       flex: 0 1 40%; 的意思是：
-       - flex-grow: 0 (不要放大)
-       - flex-shrink: 1 (空間不夠時可以縮小)
-       - flex-basis: 40% (基礎寬度為父容器的 40%)
-       您可以將 40% 這個值改成您喜歡的大小，例如 35% 會讓圖片更小。
-    */
+}
+
+/* 2. 文字清單容器：讓它自動填滿剩下的空間 */
+.service-feature-section .feature-list {
+    flex: 0.8; /* 這行會讓文字自動填滿圖片右邊剩下的所有空間 */
+    min-width: 0;
 }
 
 .service-feature-image img {
@@ -792,23 +794,25 @@ section.content-section {
 }
 
 .floating-label-form .validation-message {
-    display: block;
-    margin-top: 5px;
     font-size: 0.85rem;
     color: #888;
 }
 
 .floating-label-form .char-count {
-    display: block;
-    margin-top: 5px;
     font-size: 0.85rem;
     color: #888;
-    text-align: right;
 }
 
 .floating-label-form .form-submit { 
     margin-top: 40px; 
     text-align: center; 
+}
+
+.floating-label-form .form-meta-info {
+    display: flex;                  /* 使用 Flexbox 佈局 */
+    justify-content: space-between; /* 讓內部元素一個靠左，一個靠右 */
+    align-items: center;            /* 垂直置中對齊 */
+    margin-top: 8px;                /* 與上方輸入框的間距 */
 }
 
 /* --- 5. 動畫效果 (Animations) --- */
@@ -861,6 +865,27 @@ section.content-section {
 
 /* 6.3 手機版 */
 @media (max-width: 768px) {
+       /* --- RWD 文字靠左對齊調整 --- */
+    .about-summary-section,
+    .service-intro-content,
+    .service-feature-content,
+    .team-profile,
+    .contact-form-intro,
+    .project-feature-content,
+    .trust-section{
+        text-align: left;
+    }
+    team-profile-header {
+        align-items: flex-start; /* Flexbox 的水平對齊是 align-items */
+    }
+    .project-feature-content ul,
+    .project-feature-content p,
+    .team-profile .bio {
+        display: block; /* 改回預設的 block 顯示方式 */
+        margin-left: 0; /* 移除 auto 置中效果 */
+        margin-right: 0;
+    }
+
     body { padding-top: 70px; }
     .container { padding: 0 30px; }
     section.content-section { padding: 80px 0; }
@@ -931,6 +956,9 @@ section.content-section {
     .what-we-do-combined-section .column-image,
     .what-we-do-combined-section .column-text {
         flex-basis: 100%;
+    }
+    .what-we-do-image {
+        width: 60%; /* 將圖片寬度從預設的 80% 縮小為 70% */
     }
     .mission-grid {
         grid-template-columns: 1fr;

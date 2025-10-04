@@ -334,7 +334,7 @@
                 </div>
 
             </div> <div id="load-more-container" class="text-center" style="margin-top: 60px;">
-                <button id="load-more-btn" class="button">More Projects</button>
+                <button id="load-more-btn" class="button">VIEW MORE</button>
             </div>
 
         </section>
@@ -392,12 +392,12 @@
                         hiddenItems.forEach(function(item) {
                             item.classList.remove('hidden-project');
                         });
-                        this.textContent = 'Top';
+                        this.textContent = 'BACK TO TOP';
                     } else {
                         hiddenItems.forEach(function(item) {
                             item.classList.add('hidden-project');
                         });
-                        this.textContent = 'More Projects';
+                        this.textContent = 'VIEW MORE';
                         if (projectsSection) {
                             projectsSection.scrollIntoView({ behavior: 'smooth' });
                         }

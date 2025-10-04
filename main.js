@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function() {
 
     // --- 【1】動態載入 Header 和 Footer ---
