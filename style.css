@@ -751,6 +751,17 @@ section.content-section {
     gap: 25px 35px;
 }
 
+.floating-label-form .form-group.has-error .validation-message {
+    display: block;
+}
+
+/* 3. 【優化】在錯誤狀態下，將輸入框的邊框也變成紅色 */
+.floating-label-form .form-group.has-error input,
+.floating-label-form .form-group.has-error textarea {
+    border-color: var(--color-primary);
+    background-color: #fff0f0; /* 可選：給一個淡淡的紅色背景 */
+}
+
 .floating-label-form .form-group {
     margin-bottom: 0;
 }
@@ -794,8 +805,10 @@ section.content-section {
 }
 
 .floating-label-form .validation-message {
+    display: none; /* 預設隱藏 */
     font-size: 0.85rem;
-    color: #888;
+    color: var(--color-primary); /* 將顏色改為代表錯誤的紅色 */
+    margin-top: 5px;
 }
 
 .floating-label-form .char-count {

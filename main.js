@@ -2,6 +2,38 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
+
+     function initializeFormValidation() {
+        const requiredFields = document.querySelectorAll('.floating-label-form [required]');
+
+        requiredFields.forEach(field => {
+            // 1. 當使用者離開輸入框時 (blur)
+            field.addEventListener('blur', function() {
+                const formGroup = this.closest('.form-group');
+                if (formGroup) {
+                    // 檢查輸入框是否無效 (例如：空值)
+                    if (!this.checkValidity()) {
+                        formGroup.classList.add('has-error');
+                    } else {
+                        formGroup.classList.remove('has-error');
+                    }
+                }
+            });
+
+            // 2. 當使用者正在輸入時 (input)，即時移除錯誤狀態
+            field.addEventListener('input', function() {
+                const formGroup = this.closest('.form-group');
+                if (formGroup && formGroup.classList.contains('has-error')) {
+                    if (this.checkValidity()) {
+                        formGroup.classList.remove('has-error');
+                    }
+                }
+            });
+        });
+    }
+    // 呼叫新函式來執行功能
+    initializeFormValidation();
+
     // --- 【1】動態載入 Header 和 Footer ---
     function loadHTML(elementId, filePath, callback) {
         const element = document.getElementById(elementId);
