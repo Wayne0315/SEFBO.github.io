@@ -742,13 +742,16 @@ section.content-section {
 }
 .contact-form-intro {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
+    margin-top:10px;
 }
 
 .floating-label-form .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px 35px;
+    gap: 35px; 
+    margin-bottom: 35px;
+
 }
 
 .floating-label-form .form-group.has-error .validation-message {
@@ -816,11 +819,6 @@ section.content-section {
     color: #888;
 }
 
-.floating-label-form .form-submit { 
-    margin-top: 40px; 
-    text-align: center; 
-}
-
 .floating-label-form .form-meta-info {
     display: flex;                  /* 使用 Flexbox 佈局 */
     justify-content: space-between; /* 讓內部元素一個靠左，一個靠右 */
@@ -851,6 +849,81 @@ section.content-section {
     transform: translateY(0);
 }
 
+.floating-label-form .form-submit {
+    display: grid;
+    /* 建立三欄：左側彈性空間 | 按鈕自適應寬度 | 右側彈性空間 */
+    grid-template-columns: 1fr auto 1fr; 
+    align-items: center; /* 垂直置中 */
+    gap: 20px;           /* 設定間距 */
+    margin-top: 40px;    /* 保持與上方欄位的距離 */
+}
+
+/* 2. 將按鈕明確地放在中間第二欄 */
+.form-submit .button {
+    grid-column: 2 / 3;
+}
+
+/* 3. 將提示文字放在右側第三欄，並讓它靠左對齊 */
+.form-submit .recaptcha-notice {
+    grid-column: 3 / 4;
+    justify-self: start; /* 讓文字在自己的欄位內靠左 */
+    font-size: 0.75rem;
+    color: #777;
+    max-width: 280px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* (舊的 recaptcha-notice 樣式已合併至此) */
+
+.recaptcha-notice a {
+    color: #555;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.recaptcha-notice a:hover {
+    color: var(--color-primary);
+}
+
+/* Style for the new reCAPTCHA notice text */
+.recaptcha-notice {
+    font-size: 0.75rem; /* Make the text smaller */
+    color: #777;       /* Use a gray color for subtlety */
+    max-width: 280px;   /* Limit the width to prevent it from being too long */
+    line-height: 1.4;
+    margin: 0; /* Remove default paragraph margin */
+}
+
+
+@media (max-width: 768px) {
+
+    /* ▼▼▼ 【在 RWD 區塊中新增/修改這一段】 ▼▼▼ */
+    .floating-label-form .form-submit {
+        grid-template-columns: 1fr; /* 在手機上變為單欄 */
+        justify-items: center;      /* 讓所有項目在單欄中置中 */
+        text-align: center;         /* 讓文字也置中 */
+    }
+
+    .form-submit .button,
+    .form-submit .recaptcha-notice {
+        grid-column: 1 / 0; /* 讓按鈕和文字都佔據整個單欄 */
+    }
+    /* ▲▲▲ 【修改結束】 ▲▲▲ */
+        /* 聯絡頁 RWD */
+    .floating-label-form .form-grid {
+        /* 將網格從兩欄 (1fr 1fr) 改為單欄 (1fr) */
+        grid-template-columns: 1fr;
+        /* 設定單欄時，項目之間的垂直間距 */
+        gap: 25px;
+        /* 移除之前為了推開 Message 區塊的 margin，現在由 gap 控制 */
+        margin-bottom: 25px;
+    }
+
+    
+}
+
+
 
 /* --- 6. 響應式設計 (Responsive Styles) --- */
 
@@ -880,10 +953,7 @@ section.content-section {
 @media (max-width: 768px) {
        /* --- RWD 文字靠左對齊調整 --- */
     .about-summary-section,
-    .service-intro-content,
-    .service-feature-content,
     .team-profile,
-    .contact-form-intro,
     .project-feature-content,
     .trust-section{
         text-align: left;
@@ -978,10 +1048,7 @@ section.content-section {
         gap: 50px;
     }
 
-    /* 聯絡頁 RWD */
-    .floating-label-form .form-grid {
-        grid-template-columns: 1fr;
-    }
+
     .maintenance-grid {
         grid-template-columns: 1fr;
     }
