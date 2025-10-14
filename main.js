@@ -1,17 +1,12 @@
-
-
 document.addEventListener("DOMContentLoaded", function() {
 
-
-     function initializeFormValidation() {
+    // --- 【1】表單驗證功能 ---
+    function initializeFormValidation() {
         const requiredFields = document.querySelectorAll('.floating-label-form [required]');
-
         requiredFields.forEach(field => {
-            // 1. 當使用者離開輸入框時 (blur)
             field.addEventListener('blur', function() {
                 const formGroup = this.closest('.form-group');
                 if (formGroup) {
-                    // 檢查輸入框是否無效 (例如：空值)
                     if (!this.checkValidity()) {
                         formGroup.classList.add('has-error');
                     } else {
@@ -19,8 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 }
             });
-
-            // 2. 當使用者正在輸入時 (input)，即時移除錯誤狀態
             field.addEventListener('input', function() {
                 const formGroup = this.closest('.form-group');
                 if (formGroup && formGroup.classList.contains('has-error')) {
@@ -31,10 +24,9 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
-    // 呼叫新函式來執行功能
     initializeFormValidation();
 
-    // --- 【1】動態載入 Header 和 Footer ---
+    // --- 【2】動態載入 Header 和 Footer ---
     function loadHTML(elementId, filePath, callback) {
         const element = document.getElementById(elementId);
         if (element) {
@@ -47,11 +39,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 .catch(error => console.error(`Error loading ${filePath}:`, error));
         }
     }
-
     loadHTML('header-placeholder', 'header.html', initializeHeaderFeatures);
     loadHTML('footer-placeholder', 'footer.html');
 
-    // --- 【2】初始化所有 Header 相關的功能 ---
+    // --- 【3】初始化所有 Header 相關的功能 ---
     function initializeHeaderFeatures() {
         const navLinks = document.querySelectorAll('#main-nav a');
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -60,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 link.classList.add('active-link');
             }
         });
-
         const menuToggle = document.getElementById('menu-toggle');
         const mainNav = document.getElementById('main-nav');
         if (menuToggle && mainNav) {
@@ -71,8 +61,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // --- 【3】初始化頁面滾動動畫 ---
-    const animatedItems = document.querySelectorAll('.project-feature, .team-profile, .fade-in-up');    if (animatedItems.length > 0) {
+    // --- 【4】初始化頁面滾動動畫 ---
+    const animatedItems = document.querySelectorAll('.project-feature, .team-profile, .fade-in-up');
+    if (animatedItems.length > 0) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -84,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
         animatedItems.forEach(item => observer.observe(item));
     }
 
-    // --- 【4】初始化平滑滾動功能 ---
+    // --- 【5】初始化平滑滾動功能 (for .scroll-down-prompt) ---
     const scrollLinks = document.querySelectorAll('.scroll-down-prompt');
     scrollLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -97,10 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // --- 【5】【關鍵】初始化所有 Swiper 輪播 ---
-
-    // 初始化 Hero Slider
-    // 檢查頁面上是否有 .hero-slider 元素，避免在沒有該輪播的頁面報錯
+    // --- 【6】初始化 Swiper 輪播 ---
     if (document.querySelector('.hero-slider')) {
         const heroSlider = new Swiper('.hero-slider', {
             loop: true,
@@ -118,5 +106,28 @@ document.addEventListener("DOMContentLoaded", function() {
             },
         });
     }
-  
+
+    // --- 【7】回到最上方 (Back to Top) 按鈕功能 ---
+    const backToTopBtn = document.getElementById('back-to-top-btn');
+    if (backToTopBtn) {
+        // 偵測滾動事件
+        window.addEventListener('scroll', () => {
+            // 如果頁面向下滾動超過 300px，就顯示按鈕
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('is-visible');
+            } else {
+                backToTopBtn.classList.remove('is-visible');
+            }
+        });
+        // 偵測點擊事件
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // 防止 a 標籤的預設跳轉行為
+            // 平滑滾動到頁面頂部
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
 }); // DOMContentLoaded 事件監聽器結束
