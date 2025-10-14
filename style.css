@@ -829,7 +829,7 @@ section.content-section {
     top: 50%;
     left: 16px;
     transform: translateY(-50%);
-    color: #888;
+    color: #484848;
     font-size: 1rem;
     pointer-events: none;
     transition: all 0.2s ease-in-out;
