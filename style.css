@@ -1143,12 +1143,12 @@ textarea {
     font-size: 0.7rem; /* 可以稍微縮小字體以容納更多空間 */
     }
     .services-grid {
-    justify-items: center; /* 關鍵：讓網格內的項目水平置中 */
     }
     .service-item {
-    width: 90%;         /* 關鍵：強制所有卡片的寬度統一為其容器的 90% */
-    max-width: 400px;   /* (建議) 設定一個最大寬度，避免在較寬的手機上過大 */
-    box-sizing: border-box; /* 確保 padding 不會影響寬度計算 */
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin: 0 auto; /* 【新增】讓項目自己完美置中 */
 }
     
     /* 通用版面 RWD */
