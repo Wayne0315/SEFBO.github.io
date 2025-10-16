@@ -935,6 +935,20 @@ section.content-section {
     color: var(--color-primary);
 }
 
+/* --- 表單字體統一樣式 --- */
+
+/* 選擇所有的 input 和 textarea 元素 */
+input,
+textarea {
+    /* * 關鍵！
+     * "inherit" 關鍵字會讓這些欄位繼承其父層容器的字體設定，
+     * 通常就是你在 <body> 上設定的字體。
+     * 這樣就能確保它們和頁面上其他文字的字體一致。
+     */
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit; /* 建議也統一 line-height */
+}
 /* --- 5. 動畫效果 (Animations) --- */
 
 .fade-in-up {
