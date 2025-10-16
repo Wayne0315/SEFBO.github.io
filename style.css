@@ -426,7 +426,6 @@ section.content-section {
     transform: rotate(15deg) scale(1.15);
 }
 .service-item h4 {
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
