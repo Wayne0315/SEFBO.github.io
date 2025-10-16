@@ -1063,10 +1063,7 @@ textarea {
         /* 如果之前沒刪掉，確保 white-space: nowrap; 在這裡不存在 */
         /* 這將允許 "STRUCTURAL ASSESSMENT" 等長標題自然換行 */
     }
-    .page-hero-section {
-        height: 60vh; /* 【新增】將高度從 95vh 縮小為 70vh */
-        min-height: 450px;
-    }
+
 
     /* 2. 【解決圖片沒有置中】
        再次明確地告訴 .column-image 容器，要將其內部的圖片水平置中。*/
@@ -1091,6 +1088,21 @@ textarea {
 }
 
 
+
+@media (max-width: 991px) {
+    .scope-image-container {
+        flex-basis: auto;
+        width: 60%;
+        margin: 0 auto 40px auto;
+    }
+}
+
+/* 在更小的手機上 (螢幕寬度 <= 576px)，可以讓它再寬一點 */
+@media (max-width: 576px) {
+    .scope-image-container {
+        width: 85%;
+    }
+}
 /* 6.3 手機版 */
 @media (max-width: 768px) {
        /* --- RWD 文字靠左對齊調整 --- */
