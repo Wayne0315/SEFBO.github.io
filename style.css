@@ -1144,8 +1144,8 @@ textarea {
     .services-grid {
     }
     .service-item {
-    width: 80%;
-    max-width: 400px;
+    width: 90%;
+    max-width: 350px;
     box-sizing: border-box;
     margin: 0 auto; /* 【新增】讓項目自己完美置中 */
 }
