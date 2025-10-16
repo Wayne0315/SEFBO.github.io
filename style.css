@@ -1050,7 +1050,7 @@ textarea {
 /* --- 6. 響應式設計 (Responsive Styles) --- */
 
 /* 6.1 平板 */
-@media (min-width: 576px) and (max-width: 991px) {
+@media (min-width: 769px) and (max-width: 991px) {
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1062,6 +1062,10 @@ textarea {
     .service-item h4 {
         /* 如果之前沒刪掉，確保 white-space: nowrap; 在這裡不存在 */
         /* 這將允許 "STRUCTURAL ASSESSMENT" 等長標題自然換行 */
+    }
+    .page-hero-section {
+        height: 60vh; /* 【新增】將高度從 95vh 縮小為 70vh */
+        min-height: 450px;
     }
 
     /* 2. 【解決圖片沒有置中】
