@@ -1145,7 +1145,7 @@ textarea {
     }
     .service-item {
     width: 90%;
-    max-width: 350px;
+    max-width: 380px;
     box-sizing: border-box;
     margin: 0 auto; /* 【新增】讓項目自己完美置中 */
 }
