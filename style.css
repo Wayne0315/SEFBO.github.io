@@ -1054,6 +1054,22 @@ textarea {
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    /* 1. 【解決文字被吃掉】
+       將服務項目改為兩欄佈局，並允許文字換行。*/
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .service-item h4 {
+        /* 如果之前沒刪掉，確保 white-space: nowrap; 在這裡不存在 */
+        /* 這將允許 "STRUCTURAL ASSESSMENT" 等長標題自然換行 */
+    }
+
+    /* 2. 【解決圖片沒有置中】
+       再次明確地告訴 .column-image 容器，要將其內部的圖片水平置中。*/
+    .column-image {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 /* 6.2 電腦版 */
@@ -1137,7 +1153,7 @@ textarea {
     .hide-on-mobile {
         display: none;
     }
-  .footer-bottom {
+    .footer-bottom {
     flex-direction: row; /* 【修改】讓手機版也維持水平排列 */
     font-size: 0.7rem; /* 可以稍微縮小字體以容納更多空間 */
     }
